@@ -4,4 +4,7 @@
     <string name="login_password">Contraseña</string>
     <string name="login">Iniciar Sesión</string>
     <string name="create_account">Crear Cuenta</string>
+    <string name="edit_profile">Editar Perfil</string>
+    <string name="settings">Configuración</string>
+    <string name="history">Historial</string>
 </resources>
