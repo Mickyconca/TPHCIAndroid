@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name" translatable="false">QuickFitness</string>
+    <string name="login_name">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login">Log In</string>
+    <string name="create_account">Create account</string>
+</resources>
