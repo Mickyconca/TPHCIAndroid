@@ -4,7 +4,13 @@
     <string name="login_password">Contraseña</string>
     <string name="login">Iniciar Sesión</string>
     <string name="create_account">Crear Cuenta</string>
+    <string name="start_routine">Iniciar</string>
+    <string name="add_to_favourite">Agregar a favoritos</string>
+    <string name="routine_name_text">Nombre de Rutina</string>
+    <string name="estimated_time">Tiempo estimado</string>
     <string name="edit_profile">Editar Perfil</string>
     <string name="settings">Configuración</string>
     <string name="history">Historial</string>
+    <string name="rating">Puntuación:</string>
+    <string name="time_icon">Ícono</string>
 </resources>
