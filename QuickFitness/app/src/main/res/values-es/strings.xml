@@ -13,4 +13,14 @@
     <string name="history">Historial</string>
     <string name="rating">Puntuación:</string>
     <string name="time_icon">Ícono</string>
+    <string name="exercise">Nombre del ejercicio</string>
+    <string name="last_exercise">Ejercicio anterior</string>
+    <string name="next_exercise">Ejercicio siguiente</string>
+    <string name="pause_exercise">Pausar ejercicio</string>
+    <string name="exercise_image">Imagen del ejercicio</string>
+    <string name="routine_name">Nombre de la Rutina</string>
+    <string name="exerciseCounter">3/15</string>
+    <string name="chrono">1:00</string>
+    <string name="description">Description</string>
+    <string name="exit">Salir</string>
 </resources>
