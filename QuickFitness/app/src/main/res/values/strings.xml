@@ -28,4 +28,6 @@
     <string name="search">Search</string>
     <string name="profile">Profile</string>
     <string name="favourites">Favourites</string>
+    <string name="recent_routines">Recent Routines</string>
+    <string name="discover">Discover</string>
 </resources>

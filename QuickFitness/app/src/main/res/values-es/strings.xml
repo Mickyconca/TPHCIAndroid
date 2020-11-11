@@ -26,5 +26,7 @@
     <string name="home">Home</string>
     <string name="search">Buscar</string>
     <string name="profile">Profile</string>
-    <string name="favourites">Favourites</string>
+    <string name="favourites">Favoritos</string>
+    <string name="recent_routines">Rutinas Recientes</string>
+    <string name="discover">Descubrir</string>
 </resources>

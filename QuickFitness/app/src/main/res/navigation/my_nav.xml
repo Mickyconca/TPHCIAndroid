@@ -34,4 +34,20 @@
         android:id="@+id/routinesFragment"
         android:name="ar.edu.itba.quickfitness.RoutinesFragment"
         android:label="RoutinesFragment" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="ar.edu.itba.quickfitness.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main"/>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="ar.edu.itba.quickfitness.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search"/>
+    <fragment
+        android:id="@+id/favouritessFragment"
+        android:name="ar.edu.itba.quickfitness.FavouritesFragment"
+        android:label="FavouritesFragment"
+        tools:layout="@layout/fragment_favourites"/>
+
 </navigation>
