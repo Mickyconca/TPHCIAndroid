@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ExerciseActivity">
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomExerciseAppBar"
@@ -84,8 +85,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/exerciseTopToolBar"
         app:layout_constraintEnd_toEndOf="@+id/exerciseTopToolBar"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/exerciseTopToolBar"
-        app:layout_constraintTop_toTopOf="@+id/exerciseTopToolBar" />
+        app:layout_constraintTop_toTopOf="@+id/exerciseTopToolBar"
+        app:layout_constraintVertical_bias="0.39" />
 
     <TextView
         android:id="@+id/exerciseCounter"
