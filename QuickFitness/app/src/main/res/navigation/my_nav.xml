@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/routinesFragment">
+    app:startDestination="@id/fragment_home">
 
     <activity
         android:id="@+id/logInActivity"
@@ -21,7 +21,7 @@
         android:label="exercise_activity"
         tools:layout="@layout/exercise_activity" />
     <fragment
-        android:id="@+id/profileFragment"
+        android:id="@+id/fragment_profile"
         android:name="ar.edu.itba.quickfitness.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
@@ -35,17 +35,17 @@
         android:name="ar.edu.itba.quickfitness.RoutinesFragment"
         android:label="RoutinesFragment" />
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/fragment_home"
         android:name="ar.edu.itba.quickfitness.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main"/>
     <fragment
-        android:id="@+id/searchFragment"
+        android:id="@+id/fragment_search"
         android:name="ar.edu.itba.quickfitness.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search"/>
     <fragment
-        android:id="@+id/favouritessFragment"
+        android:id="@+id/fragment_favourites"
         android:name="ar.edu.itba.quickfitness.FavouritesFragment"
         android:label="FavouritesFragment"
         tools:layout="@layout/fragment_favourites"/>
