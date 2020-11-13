@@ -19,7 +19,7 @@
         android:id="@+id/exerciseActivity"
         android:name="ar.edu.itba.quickfitness.ExerciseActivity"
         android:label="exercise_activity"
-        tools:layout="@layout/exercise_activity" />
+        tools:layout="@layout/activity_exercise" />
     <fragment
         android:id="@+id/fragment_profile"
         android:name="ar.edu.itba.quickfitness.ProfileFragment"
