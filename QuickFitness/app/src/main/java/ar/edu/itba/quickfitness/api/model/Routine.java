@@ -31,9 +31,9 @@ public class Routine {
     private Creator creator;
     @SerializedName("category")
     @Expose
-    private Category category;
+    private CategoryOrSport category;
 
-    public Routine(Integer id, String name, String detail, Integer dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, Category category) {
+    public Routine(Integer id, String name, String detail, Integer dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, CategoryOrSport category) {
         this.id = id;
         this.name = name;
         this.detail = detail;
@@ -109,11 +109,11 @@ public class Routine {
         this.creator = creator;
     }
 
-    public Category getCategory() {
+    public CategoryOrSport getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryOrSport category) {
         this.category = category;
     }
 
