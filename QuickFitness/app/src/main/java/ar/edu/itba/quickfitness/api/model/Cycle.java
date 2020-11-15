@@ -24,6 +24,15 @@ public class Cycle {
     @Expose
     private Integer repetitions;
 
+    public Cycle(Integer id, String name, String detail, String type, Integer order, Integer repetitions) {
+        this.id = id;
+        this.name = name;
+        this.detail = detail;
+        this.type = type;
+        this.order = order;
+        this.repetitions = repetitions;
+    }
+
     public Integer getId() {
         return id;
     }

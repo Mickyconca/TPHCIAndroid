@@ -7,7 +7,7 @@
     <string name="start_routine">Iniciar</string>
     <string name="add_to_favourite">Agregar a favoritos</string>
     <string name="routine_name_text">Nombre de Rutina</string>
-    <string name="estimated_time">Tiempo estimado:</string>
+    <string name="estimated_time">Duración:</string>
     <string name="edit_profile">Editar Perfil</string>
     <string name="settings">Configuración</string>
     <string name="history">Historial</string>

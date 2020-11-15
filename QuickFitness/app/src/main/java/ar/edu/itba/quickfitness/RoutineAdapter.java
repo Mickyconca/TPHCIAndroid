@@ -1,8 +1,10 @@
 package ar.edu.itba.quickfitness;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,9 +15,11 @@ import java.util.List;
 public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineViewHolder> {
 
     List<AuxiliarRoutine> myList;
+    private RecyclerViewClickListener listener;
 
-    public RoutineAdapter(List<AuxiliarRoutine> data) {
+    public RoutineAdapter(List<AuxiliarRoutine> data, RecyclerViewClickListener listener) {
         myList = data;
+        this.listener = listener;
     }
 
     //aca se hace el cableo entre lista y lo que se ve en pantalla
@@ -29,6 +33,10 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
         holder.creatorName.setText(creator);
         holder.rating.setText(String.valueOf(rating));
         holder.estimatedTime.setText(String.valueOf(estimated));
+    }
+
+    public interface RecyclerViewClickListener{
+        void onClick(View view, int position);
     }
 
     //OBLIGATORIO PARA QUE EL SO SEPA CUANTOS ITEMS TIENE
@@ -47,16 +55,27 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
         return new RoutineViewHolder(view);
     }
 
-    public static class RoutineViewHolder extends RecyclerView.ViewHolder {
+    public class RoutineViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView routineName, creatorName, rating, estimatedTime;
+        Button startRoutine;
         public RoutineViewHolder(@NonNull View itemView) {
             super(itemView);
+
 
             routineName = itemView.findViewById(R.id.routine_name);
             creatorName = itemView.findViewById(R.id.creatorName);
             rating = itemView.findViewById(R.id.rating);
             estimatedTime = itemView.findViewById(R.id.estimatedTime);
+
+            startRoutine = itemView.findViewById(R.id.start_routine);
+
+            startRoutine.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v, getAdapterPosition());
         }
     }
 }

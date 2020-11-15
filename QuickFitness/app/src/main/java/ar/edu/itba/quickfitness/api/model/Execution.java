@@ -21,6 +21,14 @@ public class Execution {
     @Expose
     private Routine routine;
 
+    public Execution(Integer id, Integer date, Integer duration, Boolean wasModified, Routine routine) {
+        this.id = id;
+        this.date = date;
+        this.duration = duration;
+        this.wasModified = wasModified;
+        this.routine = routine;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -15,6 +15,12 @@ public class Sport {
     @Expose
     private String detail;
 
+    public Sport(Integer id, String name, String detail) {
+        this.id = id;
+        this.name = name;
+        this.detail = detail;
+    }
+
     public Integer getId() {
         return id;
     }

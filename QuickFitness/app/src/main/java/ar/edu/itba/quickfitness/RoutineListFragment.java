@@ -1,5 +1,6 @@
 package ar.edu.itba.quickfitness;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ public class RoutineListFragment extends Fragment {
 
     private ArrayList<AuxiliarRoutine> routines;
     private RecyclerView routineRecycler;
+    private RoutineAdapter.RecyclerViewClickListener listener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,10 +36,21 @@ public class RoutineListFragment extends Fragment {
         routineRecycler = view.findViewById(R.id.recyclerRoutinesId);
         routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        RoutineAdapter adapter = new RoutineAdapter(routines);
+        setOnClickListener();
+        RoutineAdapter adapter = new RoutineAdapter(routines, listener);
         routineRecycler.setAdapter(adapter);
 
         return view;
+    }
+
+    private void setOnClickListener(){
+        listener = new RoutineAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent = new Intent(getContext(),ExerciseActivity.class);
+                startActivity(intent);
+            }
+        };
     }
 
     private void fillList(ArrayList<AuxiliarRoutine> arrayList){

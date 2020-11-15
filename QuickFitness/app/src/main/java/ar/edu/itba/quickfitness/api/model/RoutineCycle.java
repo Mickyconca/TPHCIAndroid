@@ -21,6 +21,14 @@ public class RoutineCycle {
     @Expose
     private Integer repetitions;
 
+    public RoutineCycle(String name, String detail, String type, Integer order, Integer repetitions) {
+        this.name = name;
+        this.detail = detail;
+        this.type = type;
+        this.order = order;
+        this.repetitions = repetitions;
+    }
+
     public String getName() {
         return name;
     }

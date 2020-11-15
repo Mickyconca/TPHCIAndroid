@@ -9,6 +9,10 @@ public class Token {
     @Expose
     private String token;
 
+    public Token(String token) {
+        this.token = token;
+    }
+
     public String getToken() {
         return token;
     }

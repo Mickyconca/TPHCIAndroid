@@ -24,6 +24,15 @@ public class Creator {
     @Expose
     private Integer dateLastActive;
 
+    public Creator(Integer id, String username, String gender, String avatarUrl, Integer dateCreated, Integer dateLastActive) {
+        this.id = id;
+        this.username = username;
+        this.gender = gender;
+        this.avatarUrl = avatarUrl;
+        this.dateCreated = dateCreated;
+        this.dateLastActive = dateLastActive;
+    }
+
     public Integer getId() {
         return id;
     }

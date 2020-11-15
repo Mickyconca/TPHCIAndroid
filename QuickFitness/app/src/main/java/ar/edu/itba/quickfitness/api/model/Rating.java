@@ -15,6 +15,12 @@ public class Rating {
     @Expose
     private Routine routine;
 
+    public Rating(String score, String review, Routine routine) {
+        this.score = score;
+        this.review = review;
+        this.routine = routine;
+    }
+
     public String getScore() {
         return score;
     }

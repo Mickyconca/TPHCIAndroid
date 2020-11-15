@@ -15,6 +15,12 @@ public class Image {
     @Expose
     private String url;
 
+    public Image(Integer id, Integer number, String url) {
+        this.id = id;
+        this.number = number;
+        this.url = url;
+    }
+
     public Integer getId() {
         return id;
     }

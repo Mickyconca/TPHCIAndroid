@@ -27,6 +27,16 @@ public class Exercise {
     @Expose
     private Integer order;
 
+    public Exercise(Integer id, String name, String detail, String type, Integer duration, Integer repetitions, Integer order) {
+        this.id = id;
+        this.name = name;
+        this.detail = detail;
+        this.type = type;
+        this.duration = duration;
+        this.repetitions = repetitions;
+        this.order = order;
+    }
+
     public Integer getId() {
         return id;
     }

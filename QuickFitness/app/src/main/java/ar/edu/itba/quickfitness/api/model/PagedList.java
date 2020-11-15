@@ -17,7 +17,7 @@ public class PagedList<T> {
     private String direction;
     @SerializedName("results")
     @Expose
-    private List<T> results = null;
+    private List<T> results;
     @SerializedName("size")
     @Expose
     private Integer size;
@@ -27,6 +27,16 @@ public class PagedList<T> {
     @SerializedName("isLastPage")
     @Expose
     private Boolean isLastPage;
+
+    public PagedList(Integer totalCount, String orderBy, String direction, List<T> results, Integer size, Integer page, Boolean isLastPage) {
+        this.totalCount = totalCount;
+        this.orderBy = orderBy;
+        this.direction = direction;
+        this.results = results;
+        this.size = size;
+        this.page = page;
+        this.isLastPage = isLastPage;
+    }
 
     public Integer getTotalCount() {
         return totalCount;
