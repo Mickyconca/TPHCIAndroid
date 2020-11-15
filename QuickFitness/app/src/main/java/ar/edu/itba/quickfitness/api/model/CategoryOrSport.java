@@ -3,7 +3,7 @@ package ar.edu.itba.quickfitness.api.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Category {
+public class CategoryOrSport {
 
     @SerializedName("id")
     @Expose
@@ -15,7 +15,7 @@ public class Category {
     @Expose
     private String detail;
 
-    public Category(Integer id, String name, String detail) {
+    public CategoryOrSport(Integer id, String name, String detail) {
         this.id = id;
         this.name = name;
         this.detail = detail;

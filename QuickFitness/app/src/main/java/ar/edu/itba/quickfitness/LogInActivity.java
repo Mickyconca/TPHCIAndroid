@@ -23,10 +23,10 @@ public class LogInActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
 
         assert binding.loginButton != null;
-        binding.loginButton.setOnClickListener(v->{
+        findViewById(R.id.loginButton).setOnClickListener(v->{
             Log.d("PRUEBA", "LLEGUEEEEEEEEEEEEe");
             ApiUserService userService = ApiClient.create(ApiUserService.class);
-            userService.login(new LoginCredentials("patri1", "1234"))
+            userService.login(new LoginCredentials("johndoe", "1234567890"))
                     .observe(this, r->{
                         if(r.getError() == null){
                             Log.d("UI", "Token --> " + r.getData().getToken());
