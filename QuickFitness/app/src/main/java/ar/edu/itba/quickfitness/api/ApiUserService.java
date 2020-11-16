@@ -21,7 +21,7 @@ import retrofit2.http.Path;
 public interface ApiUserService {
 
     @POST("user")
-    LiveData<ApiResponse<User>> getCredentials(@Body UserCredentials credentials);
+    LiveData<ApiResponse<User>> createUser(@Body UserCredentials credentials);
 
     @POST("user/verify_email")
     LiveData<ApiResponse<Void>> verifyEmail(@Body VerifyEmailCredentials credentials);
