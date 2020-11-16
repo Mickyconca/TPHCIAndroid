@@ -6,7 +6,10 @@ import ar.edu.itba.quickfitness.api.model.LoginCredentials;
 import ar.edu.itba.quickfitness.api.model.PagedList;
 import ar.edu.itba.quickfitness.api.model.Routine;
 import ar.edu.itba.quickfitness.api.model.Token;
+import ar.edu.itba.quickfitness.api.model.UpdateUserCredentials;
 import ar.edu.itba.quickfitness.api.model.User;
+import ar.edu.itba.quickfitness.api.model.UserCredentials;
+import ar.edu.itba.quickfitness.api.model.VerifyEmailCredentials;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -18,10 +21,10 @@ import retrofit2.http.Path;
 public interface ApiUserService {
 
     @POST("user")
-    LiveData<ApiResponse<User>> getCredentials(@Body User credentials);
+    LiveData<ApiResponse<User>> getCredentials(@Body UserCredentials credentials);
 
     @POST("user/verify_email")
-    LiveData<ApiResponse<Void>> verifyEmail(@Body User credentials);
+    LiveData<ApiResponse<Void>> verifyEmail(@Body VerifyEmailCredentials credentials);
 
     @POST("user/login")
     LiveData<ApiResponse<Token>> login(@Body LoginCredentials credentials);
@@ -33,7 +36,7 @@ public interface ApiUserService {
     LiveData<ApiResponse<User>> getCurrentUser();
 
     @PUT("user/current")
-    LiveData<ApiResponse<User>> updateCurrentUser(@Body User credentials);
+    LiveData<ApiResponse<User>> updateCurrentUser(@Body UpdateUserCredentials credentials);
 
     @DELETE("user/current")
     LiveData<ApiResponse<Void>> deleteCurrentUser();
