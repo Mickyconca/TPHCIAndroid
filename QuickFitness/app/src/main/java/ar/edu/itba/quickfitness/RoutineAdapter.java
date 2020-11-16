@@ -1,6 +1,5 @@
 package ar.edu.itba.quickfitness;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,29 +9,32 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import ar.edu.itba.quickfitness.api.model.Routine;
 
 public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineViewHolder> {
 
-    List<AuxiliarRoutine> myList;
+    ArrayList<Routine> routineList;
     private RecyclerViewClickListener listener;
 
-    public RoutineAdapter(List<AuxiliarRoutine> data, RecyclerViewClickListener listener) {
-        myList = data;
+    public RoutineAdapter(ArrayList<Routine> data, RecyclerViewClickListener listener) {
+        routineList = data;
         this.listener = listener;
     }
 
     //aca se hace el cableo entre lista y lo que se ve en pantalla
     @Override
     public void onBindViewHolder(@NonNull RoutineViewHolder holder, int position) {
-        String name = myList.get(position).getName();
-        String creator = myList.get(position).getCreator();
-        int rating = myList.get(position).getRating();
-        int estimated = myList.get(position).getEstimatedTime();
+        String name = routineList.get(position).getName();
+        String creator = routineList.get(position).getCreator().getUsername();
+        int rating = routineList.get(position).getAverageRating();
+        int estimated = routineList.get(position).getId();
         holder.routineName.setText(name);
         holder.creatorName.setText(creator);
         holder.rating.setText(String.valueOf(rating));
-        holder.estimatedTime.setText(String.valueOf(estimated));
+        holder.difficulty.setText(String.valueOf(estimated));
     }
 
     public interface RecyclerViewClickListener{
@@ -42,7 +44,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
     //OBLIGATORIO PARA QUE EL SO SEPA CUANTOS ITEMS TIENE
     @Override
     public int getItemCount() {
-        return myList.size();
+        return routineList.size();
     }
 
 
@@ -57,7 +59,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
 
     public class RoutineViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView routineName, creatorName, rating, estimatedTime;
+        TextView routineName, creatorName, rating, difficulty;
         Button startRoutine;
         public RoutineViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,7 +68,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
             routineName = itemView.findViewById(R.id.routine_name);
             creatorName = itemView.findViewById(R.id.creatorName);
             rating = itemView.findViewById(R.id.rating);
-            estimatedTime = itemView.findViewById(R.id.estimatedTime);
+            difficulty = itemView.findViewById(R.id.difficulty);
 
             startRoutine = itemView.findViewById(R.id.start_routine);
 

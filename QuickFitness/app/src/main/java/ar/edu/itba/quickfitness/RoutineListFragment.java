@@ -9,15 +9,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import ar.edu.itba.quickfitness.api.ApiClient;
+import ar.edu.itba.quickfitness.api.ApiUserService;
+import ar.edu.itba.quickfitness.api.model.Routine;
+
 public class RoutineListFragment extends Fragment {
 
-    private ArrayList<AuxiliarRoutine> routines;
+    private ArrayList<Routine> routines;
     private RecyclerView routineRecycler;
     private RoutineAdapter.RecyclerViewClickListener listener;
 
@@ -31,7 +37,20 @@ public class RoutineListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_routine_list, container, false);
         routines = new ArrayList<>();
-        fillList(routines);
+
+        ApiUserService apiUserService = ApiClient.create(getContext(), ApiUserService.class);
+
+        apiUserService.getCurrentUserFavourites().observe(getViewLifecycleOwner(), r->{
+            if(r.getError() == null){
+                Log.d("DEBUG", "HE LLEGADO");
+                routines = new ArrayList<>(r.getData().getResults());
+            }
+            else {
+                Log.d("ERROR", "NO HE LLEGADO");
+            }
+        });
+
+        //fillList(routines);
 
         routineRecycler = view.findViewById(R.id.recyclerRoutinesId);
         routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name" translatable="false">QuickFitness</string>
     <string name="login_name">Nombre</string>
     <string name="login_password">Contraseña</string>
     <string name="login">Iniciar Sesión</string>
@@ -33,5 +34,11 @@
     <string name="name">name</string>
     <string name="_1">1</string>
     <string name="_3">3</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="difficulty">Dificultad</string>
+    <string name="insert_password">Ingrese contraseña</string>
+    <string name="insert_username">Ingrese username</string>
+    <string name="invalid_username">Usuario invalido</string>
+    <string name="invalid_password">Contraseña invalida</string>
+    <string name="login_error">Nombre de usuario o contraseña incorrectos</string>
 </resources>
