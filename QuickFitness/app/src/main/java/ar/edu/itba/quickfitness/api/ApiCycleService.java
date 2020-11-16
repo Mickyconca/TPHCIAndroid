@@ -3,6 +3,7 @@ package ar.edu.itba.quickfitness.api;
 import androidx.lifecycle.LiveData;
 
 import ar.edu.itba.quickfitness.api.model.Cycle;
+import ar.edu.itba.quickfitness.api.model.CycleInfo;
 import ar.edu.itba.quickfitness.api.model.PagedList;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -17,13 +18,13 @@ public interface ApiCycleService {
     LiveData<ApiResponse<Cycle>> getAllCycles(@Path("routineId") int routineId);
 
     @POST("routines/{routineId}/cycles")
-    LiveData<ApiResponse<Cycle>> createCycle(@Path("routineId") int routineId, @Body Cycle cycle);
+    LiveData<ApiResponse<Cycle>> createCycle(@Path("routineId") int routineId, @Body CycleInfo cycle);
 
     @GET("routines/{routineId}/cycles/{cycleId}")
     LiveData<ApiResponse<Cycle>> getCycleById(@Path("routineId") int routineId, @Path("cycleId") int cycleId);
 
     @PUT("routines/{routineId}/cycles/{cycleId}")
-    LiveData<ApiResponse<Cycle>> updateCycle(@Path("routineId") int routineId, @Path("cycleId") int cycleId, @Body Cycle cycle);
+    LiveData<ApiResponse<CycleInfo>> updateCycle(@Path("routineId") int routineId, @Path("cycleId") int cycleId, @Body CycleInfo cycle);
 
     @DELETE("routines/{routineId}/cycles/{cycleId}")
     LiveData<ApiResponse<Void>> deleteCycle(@Path("routineId") int routineId, @Path("cycleId") int cycleId);

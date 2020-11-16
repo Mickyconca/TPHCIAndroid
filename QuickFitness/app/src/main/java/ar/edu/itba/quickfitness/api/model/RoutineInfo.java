@@ -3,7 +3,7 @@ package ar.edu.itba.quickfitness.api.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RoutineCredentials {
+public class RoutineInfo {
 
     @SerializedName("name")
     @Expose
