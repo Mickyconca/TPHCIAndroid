@@ -2,6 +2,10 @@ package ar.edu.itba.quickfitness.api;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import ar.edu.itba.quickfitness.BuildConfig;
@@ -34,9 +38,13 @@ public class ApiClient {
                 .writeTimeout(WRITE_TIMEOUT,TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT,TimeUnit.SECONDS).build();
 
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new ApiDateTypeAdapter())
+                .create();
+
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(new LiveDataCallAdapterFactory())    //Puedo cambiar la firma de mis metodos
                 .build();
 
