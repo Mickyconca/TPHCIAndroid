@@ -26,7 +26,6 @@ public class RoutineListFragment extends Fragment {
 
     private ArrayList<Routine> routines;
     private RecyclerView routineRecycler;
-    private RoutineAdapter.RecyclerViewClickListener listener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,40 +40,31 @@ public class RoutineListFragment extends Fragment {
 
         ApiUserService apiUserService = ApiClient.create(getContext(), ApiUserService.class);
 
-        apiUserService.getCurrentUserFavourites().observe(getViewLifecycleOwner(), r->{
-            if(r.getError() == null){
+        apiUserService.getCurrentUserFavourites().observe(getViewLifecycleOwner(), r -> {
+            if (r.getError() == null) {
                 routines = new ArrayList<>(r.getData().getResults());
-                    routineRecycler = view.findViewById(R.id.recyclerRoutinesId);
-                    routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                routineRecycler = view.findViewById(R.id.recyclerRoutinesId);
+                routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-                    setOnClickListener();
+                RoutineAdapter adapter = new RoutineAdapter(routines, new RoutineAdapter.MyAdapterListener() {
+                    @Override
+                    public void onClickAddToFav(View v, int position) {
+                        Log.d("Hola", "MUNDO");
+                    }
 
-                    RoutineAdapter adapter = new RoutineAdapter(routines, listener);
-                    routineRecycler.setAdapter(adapter);
-            }
-            else {
-                Log.d("ERROR", r.getError().getCode()+"");
+                    @Override
+                    public void onClickStartRoutine(View v, int position) {
+                        Intent intent = new Intent(getContext(), ExerciseActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                routineRecycler.setAdapter(adapter);
+            } else {
+                Log.d("ERROR", r.getError().getCode() + "");
             }
 
 
         });
-
-//        routineRecycler = view.findViewById(R.id.recyclerRoutinesId);
-//        routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-//
-//        setOnClickListener();
-//
-//        Log.d("RUTINA", routines.size()+"");
-//        RoutineAdapter adapter = new RoutineAdapter(routines, listener);
-//        routineRecycler.setAdapter(adapter);
-
         return view;
-    }
-
-    private void setOnClickListener(){
-        listener = (view, position) -> {
-            Intent intent = new Intent(getContext(),ExerciseActivity.class);
-            startActivity(intent);
-        };
     }
 }

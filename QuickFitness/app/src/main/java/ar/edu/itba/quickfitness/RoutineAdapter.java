@@ -1,6 +1,5 @@
 package ar.edu.itba.quickfitness;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,21 +7,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ar.edu.itba.quickfitness.api.model.Routine;
 
 public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineViewHolder> {
 
     ArrayList<Routine> routineList;
-    private RecyclerViewClickListener listener;
+    public MyAdapterListener onClickListener;
 
-    public RoutineAdapter(ArrayList<Routine> data, RecyclerViewClickListener listener) {
+    public RoutineAdapter(ArrayList<Routine> data, MyAdapterListener listener) {
         routineList = data;
-        this.listener = listener;
+        this.onClickListener = listener;
     }
 
     //aca se hace el cableo entre lista y lo que se ve en pantalla
@@ -38,10 +37,6 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
         holder.creatorName.setText(creator);
         holder.rating.setText(String.valueOf(rating));
         holder.difficulty.setText(String.valueOf(estimated));
-    }
-
-    public interface RecyclerViewClickListener{
-        void onClick(View view, int position);
     }
 
     //OBLIGATORIO PARA QUE EL SO SEPA CUANTOS ITEMS TIENE
@@ -60,27 +55,44 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
         return new RoutineViewHolder(view);
     }
 
-    public class RoutineViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class RoutineViewHolder extends RecyclerView.ViewHolder{
 
         TextView routineName, creatorName, rating, difficulty;
-        Button startRoutine;
+
+
+
         public RoutineViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            itemView.findViewById(R.id.startRoutineButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickListener.onClickStartRoutine(v, getAdapterPosition());
+                }
+            });
+
+            itemView.findViewById(R.id.favButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickListener.onClickAddToFav(v,getAdapterPosition());
+                }
+            });
 
             routineName = itemView.findViewById(R.id.routine_name);
             creatorName = itemView.findViewById(R.id.creatorName);
             rating = itemView.findViewById(R.id.rating);
             difficulty = itemView.findViewById(R.id.difficulty);
 
-            startRoutine = itemView.findViewById(R.id.start_routine);
-
-            startRoutine.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-            listener.onClick(v, getAdapterPosition());
-        }
+    }
+
+
+
+    public interface MyAdapterListener {
+
+        void onClickAddToFav(View v, int position);
+
+        void onClickStartRoutine(View v, int position);
     }
 }
