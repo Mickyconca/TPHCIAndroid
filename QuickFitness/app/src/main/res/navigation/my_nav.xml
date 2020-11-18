@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/routineListFragment">
+    app:startDestination="@id/fragment_routine_list">
 
     <activity
         android:id="@+id/logInActivity"
@@ -46,7 +46,7 @@
         android:label="FavouritesFragment"
         tools:layout="@layout/fragment_favourites"/>
     <fragment
-        android:id="@+id/routineListFragment"
+        android:id="@+id/fragment_routine_list"
         android:name="ar.edu.itba.quickfitness.RoutineListFragment"
         android:label="fragment_routine_list"
         tools:layout="@layout/fragment_routine_list" />

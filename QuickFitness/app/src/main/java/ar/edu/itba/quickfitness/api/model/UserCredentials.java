@@ -3,6 +3,8 @@ package ar.edu.itba.quickfitness.api.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class UserCredentials {
 
     @SerializedName("username")
@@ -19,7 +21,7 @@ public class UserCredentials {
     private String gender;
     @SerializedName("birthdate")
     @Expose
-    private Integer birthdate;
+    private Date birthdate;
     @SerializedName("email")
     @Expose
     private String email;
@@ -29,6 +31,17 @@ public class UserCredentials {
     @SerializedName("avatarUrl")
     @Expose
     private String avatarUrl;
+
+    public UserCredentials(String username, String password, String fullName, String gender, Date birthdate, String email, String phone, String avatarUrl) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.birthdate = birthdate;
+        this.email = email;
+        this.phone = phone;
+        this.avatarUrl = avatarUrl;
+    }
 
     public String getUsername() {
         return username;
@@ -62,11 +75,11 @@ public class UserCredentials {
         this.gender = gender;
     }
 
-    public Integer getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Integer birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 

@@ -3,6 +3,8 @@ package ar.edu.itba.quickfitness.api.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class Execution {
 
     @SerializedName("id")
@@ -10,7 +12,7 @@ public class Execution {
     private Integer id;
     @SerializedName("date")
     @Expose
-    private Integer date;
+    private Date date;
     @SerializedName("duration")
     @Expose
     private Integer duration;
@@ -21,7 +23,7 @@ public class Execution {
     @Expose
     private Routine routine;
 
-    public Execution(Integer id, Integer date, Integer duration, Boolean wasModified, Routine routine) {
+    public Execution(Integer id, Date date, Integer duration, Boolean wasModified, Routine routine) {
         this.id = id;
         this.date = date;
         this.duration = duration;
@@ -37,11 +39,11 @@ public class Execution {
         this.id = id;
     }
 
-    public Integer getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Integer date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

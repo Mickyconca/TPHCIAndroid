@@ -1,5 +1,6 @@
 package ar.edu.itba.quickfitness;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +28,12 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
     //aca se hace el cableo entre lista y lo que se ve en pantalla
     @Override
     public void onBindViewHolder(@NonNull RoutineViewHolder holder, int position) {
+
         String name = routineList.get(position).getName();
         String creator = routineList.get(position).getCreator().getUsername();
         int rating = routineList.get(position).getAverageRating();
         int estimated = routineList.get(position).getId();
+
         holder.routineName.setText(name);
         holder.creatorName.setText(creator);
         holder.rating.setText(String.valueOf(rating));

@@ -3,6 +3,8 @@ package ar.edu.itba.quickfitness.api.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class Routine {
 
     @SerializedName("id")
@@ -16,7 +18,7 @@ public class Routine {
     private String detail;
     @SerializedName("dateCreated")
     @Expose
-    private Integer dateCreated;
+    private Date dateCreated;
     @SerializedName("averageRating")
     @Expose
     private Integer averageRating;
@@ -33,7 +35,7 @@ public class Routine {
     @Expose
     private CategoryOrSport category;
 
-    public Routine(Integer id, String name, String detail, Integer dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, CategoryOrSport category) {
+    public Routine(Integer id, String name, String detail, Date dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, CategoryOrSport category) {
         this.id = id;
         this.name = name;
         this.detail = detail;
@@ -69,11 +71,11 @@ public class Routine {
         this.detail = detail;
     }
 
-    public Integer getDateCreated() {
+    public Date getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Integer dateCreated) {
+    public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -117,4 +119,19 @@ public class Routine {
         this.category = category;
     }
 
+
+    @Override
+    public String toString() {
+        return "Routine{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", detail='" + detail + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", averageRating=" + averageRating +
+                ", isPublic=" + isPublic +
+                ", difficulty='" + difficulty + '\'' +
+                ", creator=" + creator +
+                ", category=" + category +
+                '}';
+    }
 }

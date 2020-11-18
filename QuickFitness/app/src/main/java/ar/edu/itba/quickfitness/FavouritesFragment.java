@@ -30,20 +30,6 @@ public class FavouritesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favourites, container, false);
-
         return view;
-    }
-
-    @Override
-    public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState){
-        view.findViewById(R.id.logoutButton).setOnClickListener(v->{
-            ApiUserService userService = ApiClient.create(getContext(),ApiUserService.class);
-            userService.getCurrentUserFavourites()
-                    .observe(getViewLifecycleOwner(), r->{
-                        if(r.getError() == null){
-                            viewModel.setRoutineList(r.getData().getResults());
-                        }
-                    });
-        });
     }
 }

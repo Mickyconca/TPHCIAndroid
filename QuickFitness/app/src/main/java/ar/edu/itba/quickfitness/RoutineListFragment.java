@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import ar.edu.itba.quickfitness.api.ApiClient;
@@ -42,44 +43,38 @@ public class RoutineListFragment extends Fragment {
 
         apiUserService.getCurrentUserFavourites().observe(getViewLifecycleOwner(), r->{
             if(r.getError() == null){
-                Log.d("DEBUG", "HE LLEGADO");
                 routines = new ArrayList<>(r.getData().getResults());
+                    routineRecycler = view.findViewById(R.id.recyclerRoutinesId);
+                    routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                    setOnClickListener();
+
+                    RoutineAdapter adapter = new RoutineAdapter(routines, listener);
+                    routineRecycler.setAdapter(adapter);
             }
             else {
-                Log.d("ERROR", "NO HE LLEGADO");
+                Log.d("ERROR", r.getError().getCode()+"");
             }
+
+
         });
 
-        //fillList(routines);
-
-        routineRecycler = view.findViewById(R.id.recyclerRoutinesId);
-        routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        setOnClickListener();
-        RoutineAdapter adapter = new RoutineAdapter(routines, listener);
-        routineRecycler.setAdapter(adapter);
+//        routineRecycler = view.findViewById(R.id.recyclerRoutinesId);
+//        routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+//        setOnClickListener();
+//
+//        Log.d("RUTINA", routines.size()+"");
+//        RoutineAdapter adapter = new RoutineAdapter(routines, listener);
+//        routineRecycler.setAdapter(adapter);
 
         return view;
     }
 
     private void setOnClickListener(){
-        listener = new RoutineAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Intent intent = new Intent(getContext(),ExerciseActivity.class);
-                startActivity(intent);
-            }
+        listener = (view, position) -> {
+            Intent intent = new Intent(getContext(),ExerciseActivity.class);
+            startActivity(intent);
         };
-    }
-
-    private void fillList(ArrayList<AuxiliarRoutine> arrayList){
-        AuxiliarRoutine aux1 = new AuxiliarRoutine("Rutina 1", "Patrick", 3,400);
-        AuxiliarRoutine aux2 = new AuxiliarRoutine("Rutina 2", "Micky", 5,1100);
-        AuxiliarRoutine aux3 = new AuxiliarRoutine("Rutina 3", "Leo", 5,200);
-        AuxiliarRoutine aux4 = new AuxiliarRoutine("Rutina 4", "Frano", 4,400);
-        AuxiliarRoutine aux5 = new AuxiliarRoutine("Rutina 5", "Robert", 4,400);
-
-        AuxiliarRoutine[] auxArray = { aux1, aux2, aux3, aux4, aux5};
-        Collections.addAll(arrayList, auxArray);
     }
 }

@@ -3,6 +3,8 @@ package ar.edu.itba.quickfitness.api.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class RatedRoutine {
 
     @SerializedName("id")
@@ -10,7 +12,7 @@ public class RatedRoutine {
     private Integer id;
     @SerializedName("date")
     @Expose
-    private Integer date;
+    private Date date;
     @SerializedName("score")
     @Expose
     private Integer score;
@@ -29,11 +31,11 @@ public class RatedRoutine {
         this.id = id;
     }
 
-    public Integer getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Integer date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
