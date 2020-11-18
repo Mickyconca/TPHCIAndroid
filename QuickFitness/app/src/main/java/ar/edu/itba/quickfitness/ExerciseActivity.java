@@ -16,13 +16,21 @@ public class ExerciseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
 
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //binding = ActivityExerciseBinding.inflate(getLayoutInflater());
         //setContentView(binding.getRoot());
 
        findViewById(R.id.backToMain).setOnClickListener(v->{
-            Intent intent = new Intent(this,LogInActivity.class);
+            Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
     }
 
 
