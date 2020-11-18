@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -33,8 +34,10 @@ public class LogInActivity extends AppCompatActivity {
 
         AtomicInteger aux = new AtomicInteger();
         showPassword.setOnClickListener(v->{
-            if(aux.get() %2 == 0)
+            if(aux.get() %2 == 0) {
                 password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+
+            }
             else
                 password.setInputType(covered);
             aux.getAndIncrement();
