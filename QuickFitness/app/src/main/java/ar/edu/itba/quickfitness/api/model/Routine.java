@@ -35,18 +35,6 @@ public class Routine {
     @Expose
     private CategoryOrSport category;
 
-    public Routine(Integer id, String name, String detail, Date dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, CategoryOrSport category) {
-        this.id = id;
-        this.name = name;
-        this.detail = detail;
-        this.dateCreated = dateCreated;
-        this.averageRating = averageRating;
-        this.isPublic = isPublic;
-        this.difficulty = difficulty;
-        this.creator = creator;
-        this.category = category;
-    }
-
     public Integer getId() {
         return id;
     }

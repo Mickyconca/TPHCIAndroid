@@ -15,20 +15,24 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiRoutineService {
 
     @GET("routines")
     LiveData<ApiResponse<PagedList<Routine>>> getAllRoutines();
 
+    @GET("routines")
+    LiveData<ApiResponse<PagedList<Routine>>> getAllRoutines(@Query("page") int page, @Query("size") int size);
+
     @POST("routines")
-    LiveData<ApiResponse<Routine>> createRoutine(@Body RoutineInfo routine);
+    LiveData<ApiResponse<Routine>> createRoutine(@Body Routine routine);
 
     @GET("routines/{routineId}")
     LiveData<ApiResponse<Routine>> getRoutineById(@Path("routineId") int routineId);
 
     @PUT("routines/{routineId}")
-    LiveData<ApiResponse<Routine>> updateRoutine(@Path("routineId") int routineId, RoutineInfo routine);
+    LiveData<ApiResponse<Routine>> updateRoutine(@Path("routineId") int routineId, Routine routine);
 
     @DELETE("routines/{routineId}")
     LiveData<ApiResponse<Void>> deleteRoutine(@Path("routineId") int routineId);

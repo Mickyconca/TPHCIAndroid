@@ -16,7 +16,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import ar.edu.itba.quickfitness.api.ApiClient;
 import ar.edu.itba.quickfitness.api.ApiUserService;
 import ar.edu.itba.quickfitness.api.AppPreferences;
+import ar.edu.itba.quickfitness.api.MyApplication;
 import ar.edu.itba.quickfitness.api.model.LoginCredentials;
+import ar.edu.itba.quickfitness.repository.UserRepository;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -24,6 +26,9 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        MyApplication application = (MyApplication) getApplication();
+        UserRepository userRepository  = application.getUserRepository();
 
         getSupportActionBar().hide();
 
@@ -50,18 +55,37 @@ public class LogInActivity extends AppCompatActivity {
             else if (password.getText().toString().length() <= 0)
                 Toast.makeText(this, R.string.invalid_password, Toast.LENGTH_LONG).show();
             else {
-                ApiUserService userService = ApiClient.create(getApplicationContext(), ApiUserService.class);
-                userService.login(new LoginCredentials(username.getText().toString(), password.getText().toString()))
-                        .observe(this, r -> {
-                            if (r.getError() == null) {
-                                AppPreferences preferences = new AppPreferences(getApplicationContext());
-                                preferences.setAuthToken(r.getData().getToken());
-                                Intent intent = new Intent(this, MainActivity.class);
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(this, r.getError().getDescription(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                userRepository.login(username.getText().toString(), password.getText().toString()).observe(this, r->{
+                    switch (r.status){
+                        case LOADING:
+                            Toast.makeText(this, "Cargando", Toast.LENGTH_SHORT).show();
+                            break;
+                        case SUCCESS:
+                            application.getPreferences().setAuthToken(r.data);
+                            break;
+                        case ERROR:
+                            Toast.makeText(this, r.message, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
+
+
+
+
+//                ApiUserService userService = ApiClient.create(getApplicationContext(), ApiUserService.class);
+//                userService.login(new LoginCredentials(username.getText().toString(), password.getText().toString()))
+//                        .observe(this, r -> {
+//                            if (r.getError() == null) {
+//                                AppPreferences preferences = new AppPreferences(getApplicationContext());
+//                                preferences.setAuthToken(r.getData().getToken());
+//                                Intent intent = new Intent(this, MainActivity.class);
+//                                startActivity(intent);
+//                            } else {
+//                                Toast.makeText(this, r.getError().getDescription(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
             }
         });
     }
