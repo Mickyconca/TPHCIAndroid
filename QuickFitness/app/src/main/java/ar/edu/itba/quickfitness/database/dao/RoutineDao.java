@@ -14,6 +14,7 @@ import ar.edu.itba.quickfitness.database.entity.RoutineEntity;
 
 @Dao
 public abstract class RoutineDao {
+
     @Query("SELECT * FROM Routine")
     public abstract LiveData<List<RoutineEntity>> findAll();
 

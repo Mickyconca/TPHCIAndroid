@@ -45,4 +45,16 @@ public class CategoryOrSport {
         this.detail = detail;
     }
 
+    @Override
+    public String toString() {
+        return "CategoryOrSport{" +
+                "id:" + id +
+                ", name='" + name + '\'' +
+                ", detail='" + detail + '\'' +
+                '}';
+    }
+
+    public String toConvert(){
+        return id + "|" + name + "|" + detail;
+    }
 }

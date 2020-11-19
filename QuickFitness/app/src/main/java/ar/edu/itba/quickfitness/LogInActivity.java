@@ -8,19 +8,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import ar.edu.itba.quickfitness.api.ApiClient;
-import ar.edu.itba.quickfitness.api.ApiUserService;
-import ar.edu.itba.quickfitness.api.AppPreferences;
 import ar.edu.itba.quickfitness.api.MyApplication;
-import ar.edu.itba.quickfitness.api.model.LoginCredentials;
 import ar.edu.itba.quickfitness.repository.UserRepository;
 
 public class LogInActivity extends AppCompatActivity {
+
+    private MyApplication myApplication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +25,8 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        MyApplication application = (MyApplication) getApplication();
-        UserRepository userRepository  = application.getUserRepository();
+        myApplication = (MyApplication) this.getApplication();
+        UserRepository userRepository  = myApplication.getUserRepository();
 
         getSupportActionBar().hide();
 
@@ -62,7 +59,7 @@ public class LogInActivity extends AppCompatActivity {
                             Toast.makeText(this, "Cargando", Toast.LENGTH_SHORT).show();
                             break;
                         case SUCCESS:
-                            application.getPreferences().setAuthToken(r.data);
+                            myApplication.getPreferences().setAuthToken(r.data);
                             break;
                         case ERROR:
                             Toast.makeText(this, r.message, Toast.LENGTH_SHORT).show();

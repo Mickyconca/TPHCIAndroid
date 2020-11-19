@@ -83,4 +83,20 @@ public class Creator {
         this.dateLastActive = dateLastActive;
     }
 
+    @Override
+    public String toString() {
+        return "Creator{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", gender='" + gender + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", dateLastActive=" + dateLastActive +
+                '}';
+    }
+
+    public String toConvert(){
+        return id + "|" + username + "|" + gender + "|" + avatarUrl + "|" + dateCreated.getTime() + "|" + dateLastActive.getTime();
+    }
+
 }
