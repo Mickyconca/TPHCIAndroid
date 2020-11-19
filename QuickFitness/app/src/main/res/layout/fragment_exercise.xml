@@ -8,6 +8,19 @@
     tools:context=".ExerciseFragment">
 
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="250dp"
+        android:layout_height="194dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/exercise_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.004"
+        tools:src="@tools:sample/avatars" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -20,34 +33,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.149" />
-
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="264dp"
-        android:layout_height="318dp"
-        android:layout_marginTop="32dp"
-        android:contentDescription="@string/exercise_image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.0"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/chrono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/chrono"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.138" />
+        app:layout_constraintVertical_bias="0.041" />
 
     <TextView
         android:id="@+id/description"
@@ -60,6 +46,19 @@
         app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chrono"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintVertical_bias="0.093" />
+
+    <TextView
+        android:id="@+id/chrono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chrono"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.101" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

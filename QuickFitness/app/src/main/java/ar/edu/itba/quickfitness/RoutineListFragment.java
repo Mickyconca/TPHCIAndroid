@@ -13,10 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 import ar.edu.itba.quickfitness.api.ApiClient;
 import ar.edu.itba.quickfitness.api.ApiUserService;
@@ -48,13 +47,19 @@ public class RoutineListFragment extends Fragment {
 
                 RoutineAdapter adapter = new RoutineAdapter(routines, new RoutineAdapter.MyAdapterListener() {
                     @Override
-                    public void onClickAddToFav(View v, int position) {
-                        Log.d("Hola", "MUNDO");
+                    public void onClickAddToFav(View v, int position, int routineId) {
+                        apiUserService.removeRoutineFromFavourites(routineId).observe(getViewLifecycleOwner(), q -> {
+                            if (q.getError() == null) {
+                                ImageButton button = v.findViewById(R.id.favButton);
+                                button.setImageResource(R.drawable.icon_fav_black);
+                            }
+                        });
                     }
 
                     @Override
-                    public void onClickStartRoutine(View v, int position) {
+                    public void onClickStartRoutine(View v, int position, int routineId) {
                         Intent intent = new Intent(getContext(), ExerciseActivity.class);
+                        intent.putExtra(ExerciseActivity.ROUTINE_ID,routineId);
                         startActivity(intent);
                     }
                 });

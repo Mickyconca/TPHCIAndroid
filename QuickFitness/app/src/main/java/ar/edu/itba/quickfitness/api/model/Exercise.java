@@ -3,6 +3,8 @@ package ar.edu.itba.quickfitness.api.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Exercise {
 
     @SerializedName("id")
@@ -93,4 +95,15 @@ public class Exercise {
         this.order = order;
     }
 
+    @NotNull
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", detail='" + detail + '\'' +
+                ", type='" + type + '\'' +
+                ", duration=" + duration +
+                '}';
+    }
 }

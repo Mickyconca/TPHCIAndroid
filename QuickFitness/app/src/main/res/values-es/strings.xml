@@ -42,4 +42,5 @@
     <string name="invalid_password">Contraseña invalida</string>
     <string name="login_error">Nombre de usuario o contraseña incorrectos</string>
     <string name="showpassword">ShowPassword</string>
+    <string name="exerciseBreak">Descanso!</string>
 </resources>

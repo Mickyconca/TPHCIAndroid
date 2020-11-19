@@ -17,17 +17,18 @@ import retrofit2.http.Path;
 public interface ApiExerciseService {
 
     @GET("routines/{routineId}/cycles/{cycleId}/exercises")
-    LiveData<ApiResponse<PagedList<Exercise>>> getAllExercises(@Path("routineId") int routineId, @Path("cycleId") int cycleId);
+    LiveData<ApiResponse<PagedList<Exercise>>> getAllExercises(@Path("routineId") int routineId,
+                                                               @Path("cycleId") int cycleId);
 
     @POST("routines/{routineId}/cycles/{cycleId}/exercises")
     LiveData<ApiResponse<Exercise>> createExercise(@Path("routineId") int routineId,
-                                  @Path("cycleId") int cycleId,
-                                  @Body ExerciseInfo exercise);
+                                                   @Path("cycleId") int cycleId,
+                                                   @Body ExerciseInfo exercise);
 
     @GET("routines/{routineId}/cycles/{cycleId}/exercises/{exerciseId}")
     LiveData<ApiResponse<Exercise>> getExerciseById(@Path("routineId") int routineId,
-                                   @Path("cycleId") int cycleId,
-                                   @Path("exerciseId") int exerciseId);
+                                                    @Path("cycleId") int cycleId,
+                                                    @Path("exerciseId") int exerciseId);
 
     @PUT("routines/{routineId}/cycles/{cycleId}/exercises/{exerciseId}")
     LiveData<ApiResponse<ExerciseUpdated>> updateExercise(@Path("routineId") int routineId,
@@ -37,6 +38,6 @@ public interface ApiExerciseService {
 
     @DELETE("routines/{routineId}/cycles/{cycleId}/exercises/{exerciseId}")
     LiveData<ApiResponse<Exercise>> deleteExercise(@Path("routineId") int routineId,
-                                  @Path("cycleId") int cycleId,
-                                  @Path("exerciseId") int exerciseId);
+                                                   @Path("cycleId") int cycleId,
+                                                   @Path("exerciseId") int exerciseId);
 }

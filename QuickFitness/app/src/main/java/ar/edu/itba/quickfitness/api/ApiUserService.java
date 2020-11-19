@@ -41,14 +41,17 @@ public interface ApiUserService {
     @DELETE("user/current")
     LiveData<ApiResponse<Void>> deleteCurrentUser();
 
-    @GET("user/current/routines")
-    LiveData<ApiResponse<PagedList<Routine>>> getCurrentUserRoutines();
-
     @GET("user/{userId}/routines")
     LiveData<ApiResponse<PagedList<Routine>>> getUserRoutines(@Path("userId") int userId);
 
+    @GET("user/current/routines")
+    LiveData<ApiResponse<PagedList<Routine>>> getCurrentUserRoutines();
+
     @GET("user/current/routines/favourites")
     LiveData<ApiResponse<PagedList<Routine>>> getCurrentUserFavourites();
+
+    @POST("user/current/routines/{routineId}/favourites")
+    LiveData<ApiResponse<Void>>addRoutineToFavourites(@Path("routineId") int routineId);
 
     @DELETE("user/current/routines/{routineId}/favourites")
     LiveData<ApiResponse<Void>>removeRoutineFromFavourites(@Path("routineId") int routineId);

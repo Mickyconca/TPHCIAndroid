@@ -42,5 +42,6 @@
     <string name="invalid_password">Invalid Password</string>
     <string name="login_error">Incorrect username or password</string>
     <string name="showpassword">ShowPassword</string>
+    <string name="exerciseBreak">Break!</string>
 
 </resources>

@@ -39,7 +39,6 @@
         android:id="@+id/pauseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:src="@drawable/icon_pause_black"
         app:layout_constraintBottom_toBottomOf="@+id/bottomExerciseAppBar"
         app:layout_constraintEnd_toEndOf="@+id/bottomExerciseAppBar"
@@ -122,16 +121,13 @@
         app:layout_constraintVertical_bias="1.0"
         android:contentDescription="@string/exit" />
 
-    <fragment
-        android:id="@+id/fragment4"
-        android:name="ar.edu.itba.quickfitness.ExerciseFragment"
-        android:layout_width="421dp"
-        android:layout_height="561dp"
-        android:layout_marginTop="84dp"
+    <FrameLayout
+        android:id="@+id/exerciseFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomExerciseAppBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/exerciseTopToolBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

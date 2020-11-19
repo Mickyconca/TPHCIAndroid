@@ -1,18 +1,16 @@
 package ar.edu.itba.quickfitness;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class ExerciseFragment extends Fragment {
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+public class BreakFragment extends Fragment {
 
     private CountDownTimer timer;
     private long timeLeft = 30*1000; //secs
@@ -22,7 +20,7 @@ public class ExerciseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_exercise, container, false);
+        View view = inflater.inflate(R.layout.fragment_break, container, false);
         // Inflate the layout for this fragment
 
         startTimer(view);
@@ -63,7 +61,7 @@ public class ExerciseFragment extends Fragment {
                 timer.cancel();
                 timeLeft = 30 * 1000;
 
-                BreakFragment fragment = new BreakFragment();
+                ProfileFragment fragment = new ProfileFragment();
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                 transaction.replace(R.id.exerciseFragmentContainer, fragment);
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);

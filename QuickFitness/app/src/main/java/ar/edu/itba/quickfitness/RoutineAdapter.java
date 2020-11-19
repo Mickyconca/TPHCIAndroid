@@ -32,11 +32,13 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
         String creator = routineList.get(position).getCreator().getUsername();
         int rating = routineList.get(position).getAverageRating();
         int estimated = routineList.get(position).getId();
+        int id = routineList.get(position).getId();
 
         holder.routineName.setText(name);
         holder.creatorName.setText(creator);
         holder.rating.setText(String.valueOf(rating));
         holder.difficulty.setText(String.valueOf(estimated));
+        holder.routineId = id;
     }
 
     //OBLIGATORIO PARA QUE EL SO SEPA CUANTOS ITEMS TIENE
@@ -58,8 +60,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
     public class RoutineViewHolder extends RecyclerView.ViewHolder{
 
         TextView routineName, creatorName, rating, difficulty;
-
-
+        int routineId;
 
         public RoutineViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,14 +68,14 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
             itemView.findViewById(R.id.startRoutineButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onClickListener.onClickStartRoutine(v, getAdapterPosition());
+                    onClickListener.onClickStartRoutine(v, getAdapterPosition(), routineId);
                 }
             });
 
             itemView.findViewById(R.id.favButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onClickListener.onClickAddToFav(v,getAdapterPosition());
+                    onClickListener.onClickAddToFav(v,getAdapterPosition(), routineId);
                 }
             });
 
@@ -91,8 +92,8 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
 
     public interface MyAdapterListener {
 
-        void onClickAddToFav(View v, int position);
+        void onClickAddToFav(View v, int position, int routineId);
 
-        void onClickStartRoutine(View v, int position);
+        void onClickStartRoutine(View v, int position, int routineId);
     }
 }
