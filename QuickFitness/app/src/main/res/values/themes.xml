@@ -2,16 +2,26 @@
     <!-- Base application theme. -->
     <style name="Theme.QuickFitness" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple</item>
+        <item name="colorPrimary">@color/teal</item>
         <item name="colorPrimaryVariant">@color/purple_accent</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal</item>
+        <item name="colorSecondary">@color/purple</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Extra color. -->
         <item name="color">@color/grey</item>
         <!-- Status bar color. -->
+        <item name="android:titleTextColor">@color/black</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="android:titleTextStyle">@style/TitleBarTextColor</item>
+    </style>
+
+    <style name="TitleBarTextColor" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>
