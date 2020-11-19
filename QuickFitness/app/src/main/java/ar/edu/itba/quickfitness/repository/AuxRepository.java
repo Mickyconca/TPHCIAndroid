@@ -6,9 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
-import ar.edu.itba.quickfitness.R;
 import ar.edu.itba.quickfitness.api.ApiResponse;
 import ar.edu.itba.quickfitness.api.ApiRoutineService;
 import ar.edu.itba.quickfitness.api.model.PagedList;
@@ -21,7 +19,7 @@ import ar.edu.itba.quickfitness.vo.Resource;
 
 import static java.util.stream.Collectors.toList;
 
-public class RoutineRepository {
+public class AuxRepository {
 
     private static final String RATE_LIMITER_ALL_KEY = "@@all@@";
 
@@ -34,7 +32,7 @@ public class RoutineRepository {
         return executors;
     }
 
-    public RoutineRepository(AppExecutors executors, ApiRoutineService service, MyDataBase database) {
+    public AuxRepository(AppExecutors executors, ApiRoutineService service, MyDataBase database) {
         this.executors = executors;
         this.service = service;
         this.database = database;

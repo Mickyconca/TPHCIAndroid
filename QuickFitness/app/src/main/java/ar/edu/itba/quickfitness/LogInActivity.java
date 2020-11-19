@@ -27,6 +27,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         MyApplication application = (MyApplication) getApplication();
         UserRepository userRepository  = application.getUserRepository();
 
