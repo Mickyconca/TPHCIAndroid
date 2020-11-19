@@ -39,7 +39,7 @@ public class RoutineListFragment extends Fragment {
 
         ApiUserService apiUserService = ApiClient.create(getContext(), ApiUserService.class);
 
-        apiUserService.getCurrentUserFavourites().observe(getViewLifecycleOwner(), r -> {
+        apiUserService.getCurrentUserRoutines().observe(getViewLifecycleOwner(), r -> {
             if (r.getError() == null) {
                 routines = new ArrayList<>(r.getData().getResults());
                 routineRecycler = view.findViewById(R.id.recyclerRoutinesId);

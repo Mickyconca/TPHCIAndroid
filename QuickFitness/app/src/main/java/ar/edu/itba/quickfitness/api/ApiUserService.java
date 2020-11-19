@@ -44,7 +44,7 @@ public interface ApiUserService {
     @GET("user/{userId}/routines")
     LiveData<ApiResponse<PagedList<Routine>>> getUserRoutines(@Path("userId") int userId);
 
-    @GET("user/current/routines")
+    @GET("user/current/routines/")
     LiveData<ApiResponse<PagedList<Routine>>> getCurrentUserRoutines();
 
     @GET("user/current/routines/favourites")
