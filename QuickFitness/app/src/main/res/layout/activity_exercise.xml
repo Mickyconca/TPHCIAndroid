@@ -13,12 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="76dp"
         android:layout_gravity="bottom"
+        app:backgroundTint="@color/purple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="0dp"
         tools:ignore="BottomAppBar" />
 
     <androidx.appcompat.widget.Toolbar
@@ -39,12 +38,13 @@
         android:id="@+id/pauseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/pause_exercise"
         android:src="@drawable/icon_pause_black"
+        app:backgroundTint="@color/teal"
         app:layout_constraintBottom_toBottomOf="@+id/bottomExerciseAppBar"
         app:layout_constraintEnd_toEndOf="@+id/bottomExerciseAppBar"
         app:layout_constraintStart_toStartOf="@+id/bottomExerciseAppBar"
-        app:layout_constraintTop_toTopOf="@+id/bottomExerciseAppBar"
-        android:contentDescription="@string/pause_exercise"/>
+        app:layout_constraintTop_toTopOf="@+id/bottomExerciseAppBar" />
 
     <ImageButton
         android:id="@+id/forwardExerciseButton"
