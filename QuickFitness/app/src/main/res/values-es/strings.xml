@@ -41,6 +41,16 @@
     <string name="invalid_username">Usuario invalido</string>
     <string name="invalid_password">Contraseña invalida</string>
     <string name="login_error">Nombre de usuario o contraseña incorrectos</string>
-    <string name="showpassword">ShowPassword</string>
+    <string name="showpassword">Ver Contraseña</string>
     <string name="exerciseBreak">Descanso!</string>
+    <string name="email">Email*</string>
+    <string name="last_name">Apellido*</string>
+    <string name="next">Siguiente</string>
+    <string name="create_account_title">CREAR CUENTA</string>
+    <string name="username">Nombre de usuario*</string>
+    <string name="password">Contraseña*</string>
+    <string name="verify_email">VERIFICAR EMAIL</string>
+    <string name="name_input">Nombre*</string>
+    <string name="code">Código*</string>
+    <string name="verify">Verificar</string>
 </resources>

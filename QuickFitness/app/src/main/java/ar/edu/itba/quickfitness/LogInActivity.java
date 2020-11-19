@@ -1,15 +1,14 @@
 package ar.edu.itba.quickfitness;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import ar.edu.itba.quickfitness.api.MyApplication;
@@ -28,7 +27,7 @@ public class LogInActivity extends AppCompatActivity {
         myApplication = (MyApplication) this.getApplication();
         UserRepository userRepository  = myApplication.getUserRepository();
 
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         EditText username = findViewById(R.id.putUsername);
         EditText password = findViewById(R.id.putPassword);

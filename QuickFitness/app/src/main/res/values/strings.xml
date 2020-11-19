@@ -43,5 +43,15 @@
     <string name="login_error">Incorrect username or password</string>
     <string name="showpassword">ShowPassword</string>
     <string name="exerciseBreak">Break!</string>
+    <string name="email">Email*</string>
+    <string name="last_name">Last name*</string>
+    <string name="next">Next</string>
+    <string name="create_account_title">CREATE ACCOUNT</string>
+    <string name="username">Username*</string>
+    <string name="password">Password*</string>
+    <string name="verify_email">VERIFY EMAIL</string>
+    <string name="name_input">Name*</string>
+    <string name="code">Code*</string>
+    <string name="verify">Verify</string>
 
 </resources>

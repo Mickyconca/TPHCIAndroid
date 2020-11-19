@@ -60,7 +60,7 @@ public class RoutineRepository {
         return model;
     }
 
-    public LiveData<Resource<List<RoutineDomain>>> getSports() {
+    public LiveData<Resource<List<RoutineDomain>>> getRoutines() {
 
         return new NetworkBoundResource<List<RoutineDomain>, List<RoutineEntity>, PagedList<Routine>>(executors,
                 entities -> {
