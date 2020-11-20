@@ -7,21 +7,9 @@ import java.util.Date;
 
 public class UpdateUserCredentials {
 
-    @SerializedName("username")
-    @Expose
-    private String username;
     @SerializedName("fullName")
     @Expose
     private String fullName;
-    @SerializedName("gender")
-    @Expose
-    private String gender;
-    @SerializedName("birthdate")
-    @Expose
-    private Date birthdate;
-    @SerializedName("email")
-    @Expose
-    private String email;
     @SerializedName("phone")
     @Expose
     private String phone;
@@ -29,12 +17,10 @@ public class UpdateUserCredentials {
     @Expose
     private String avatarUrl;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public UpdateUserCredentials(String fullName, String phone, String avatarUrl) {
+        this.fullName = fullName;
+        this.phone = phone;
+        this.avatarUrl = avatarUrl;
     }
 
     public String getFullName() {
@@ -43,30 +29,6 @@ public class UpdateUserCredentials {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Date getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPhone() {

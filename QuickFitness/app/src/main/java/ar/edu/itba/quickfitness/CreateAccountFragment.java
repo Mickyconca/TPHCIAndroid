@@ -18,7 +18,9 @@ import ar.edu.itba.quickfitness.vo.Status;
 
 public class CreateAccountFragment extends Fragment {
 
-    public static String EMAIL_STRING = "ar.edu.itba.quickfitnness.CreateAccountFragment";
+    public static String EMAIL_STRING = "ar.edu.itba.quickfitnness.CreateAccountFragment.email";
+    public static String PASSWORD_STRING = "ar.edu.itba.quickfitnness.CreateAccountFragment.password";
+    public static String USERNAME_STRING = "ar.edu.itba.quickfitnness.CreateAccountFragment.username";
 
     private MyApplication application;
     private UserRepository userRepository;
@@ -54,6 +56,8 @@ public class CreateAccountFragment extends Fragment {
                                 VerifyEmailFragment verifyEmailFragment = new VerifyEmailFragment();
                                 Bundle bundle = new Bundle();
                                 bundle.putString(EMAIL_STRING, emailView.getText().toString());
+                                bundle.putString(USERNAME_STRING, usernameView.getText().toString());
+                                bundle.putString(PASSWORD_STRING, passwordView.getText().toString());
                                 verifyEmailFragment.setArguments(bundle);
                                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                                 transaction.replace(R.id.loginFrameContainer, verifyEmailFragment);

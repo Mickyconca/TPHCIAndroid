@@ -8,6 +8,7 @@ import ar.edu.itba.quickfitness.api.ApiResponse;
 import ar.edu.itba.quickfitness.api.ApiUserService;
 import ar.edu.itba.quickfitness.api.model.LoginCredentials;
 import ar.edu.itba.quickfitness.api.model.Token;
+import ar.edu.itba.quickfitness.api.model.UpdateUserCredentials;
 import ar.edu.itba.quickfitness.api.model.User;
 import ar.edu.itba.quickfitness.api.model.UserCredentials;
 import ar.edu.itba.quickfitness.api.model.VerifyEmailCredentials;
@@ -189,6 +190,70 @@ public class UserRepository {
             @Override
             protected LiveData<ApiResponse<User>> createCall() {
                 return service.createUser(new UserCredentials(username,password,fullName,email));
+            }
+        }.asLiveData();
+    }
+
+    public LiveData<Resource<UserDomain>> modifyUser(String fullName, String phone, String avatarUrl) {
+        return new NetworkBoundResource<UserDomain, UserEntity, User>(executors, this::mapUserEntityToDomain, this::mapUserToEntity, this::mapUserToDomain) {
+
+            @Override
+            protected void saveCallResult(@NonNull UserEntity entity) {
+                database.userDao().update(entity);
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable UserEntity entity) {
+                return (entity != null);
+            }
+
+            @Override
+            protected boolean shouldPersist(@Nullable User model) {
+                return true;
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<UserEntity> loadFromDb() {
+                return AbsentLiveData.create();
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<User>> createCall() {
+                return service.updateCurrentUser(new UpdateUserCredentials(fullName,phone,avatarUrl));
+            }
+        }.asLiveData();
+    }
+
+    public LiveData<Resource<UserDomain>> getCurrentUser() {
+        return new NetworkBoundResource<UserDomain, UserEntity, User>(executors, this::mapUserEntityToDomain, this::mapUserToEntity, this::mapUserToDomain) {
+
+            @Override
+            protected void saveCallResult(@NonNull UserEntity entity) {
+                database.userDao().insert(entity);
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable UserEntity entity) {
+                return (entity == null);
+            }
+
+            @Override
+            protected boolean shouldPersist(@Nullable User model) {
+                return true;
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<UserEntity> loadFromDb() {
+                return AbsentLiveData.create();
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<User>> createCall() {
+                return service.getCurrentUser();
             }
         }.asLiveData();
     }
