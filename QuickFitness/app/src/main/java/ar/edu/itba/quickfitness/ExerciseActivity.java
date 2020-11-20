@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.util.Log;
 import android.widget.TextView;
 import android.text.Html;
@@ -59,7 +60,7 @@ public class ExerciseActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.exerciseFragmentContainer, exerciseFragment);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.addToBackStack(null);
+        //transaction.addToBackStack(null);
         transaction.commit();
 
         //getSupportActionBar().hide();
@@ -69,9 +70,14 @@ public class ExerciseActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Nombre de la Rutina");
 
+
         findViewById(R.id.backToMain).setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//            onBackPressed();
+            onBackPressed();
+            onBackPressed();
+
         });
 
         findViewById(R.id.backExerciseButton).setOnClickListener(v -> {
