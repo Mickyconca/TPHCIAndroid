@@ -1,6 +1,7 @@
 package ar.edu.itba.quickfitness.database.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -10,7 +11,7 @@ import androidx.room.Update;
 import java.util.List;
 
 import ar.edu.itba.quickfitness.database.entity.UserEntity;
-
+@Dao
 public abstract class UserDao {
     @Query("SELECT * FROM User")
     public abstract LiveData<List<UserEntity>> findAll();

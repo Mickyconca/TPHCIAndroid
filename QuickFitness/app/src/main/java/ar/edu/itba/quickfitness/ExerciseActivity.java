@@ -1,6 +1,7 @@
 package ar.edu.itba.quickfitness;
 
 
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
@@ -77,6 +78,10 @@ public class ExerciseActivity extends AppCompatActivity {
         findViewById(R.id.backToMain).setOnClickListener(v -> {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+        });
+
+        findViewById(R.id.backExerciseButton).setOnClickListener(v -> {
+            onBackPressed();
         });
     }
 
