@@ -4,25 +4,37 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import ar.edu.itba.quickfitness.api.ApiResponse;
 import ar.edu.itba.quickfitness.api.ApiUserService;
 import ar.edu.itba.quickfitness.api.model.LoginCredentials;
+import ar.edu.itba.quickfitness.api.model.PagedList;
+import ar.edu.itba.quickfitness.api.model.Routine;
 import ar.edu.itba.quickfitness.api.model.Token;
 import ar.edu.itba.quickfitness.api.model.UpdateUserCredentials;
 import ar.edu.itba.quickfitness.api.model.User;
 import ar.edu.itba.quickfitness.api.model.UserCredentials;
 import ar.edu.itba.quickfitness.api.model.VerifyEmailCredentials;
 import ar.edu.itba.quickfitness.database.MyDataBase;
+import ar.edu.itba.quickfitness.database.entity.RoutineEntity;
 import ar.edu.itba.quickfitness.database.entity.UserEntity;
+import ar.edu.itba.quickfitness.domain.RoutineDomain;
 import ar.edu.itba.quickfitness.domain.UserDomain;
 import ar.edu.itba.quickfitness.vo.AbsentLiveData;
 import ar.edu.itba.quickfitness.vo.Resource;
 
+import static java.util.stream.Collectors.toList;
+
 public class UserRepository {
+
+    private static final String RATE_LIMITER_ALL_KEY = "@@all@@";
 
     private AppExecutors executors;
     private ApiUserService service;
     private MyDataBase database;
+    private RateLimiter<String> rateLimit = new RateLimiter<>(10, TimeUnit.MINUTES);
 
     public UserRepository(AppExecutors executors, ApiUserService service, MyDataBase database) {
         this.executors = executors;
@@ -119,7 +131,7 @@ public class UserRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<Void>> createCall() {
-                return service.verifyEmail(new VerifyEmailCredentials(email,code));
+                return service.verifyEmail(new VerifyEmailCredentials(email, code));
             }
         }.asLiveData();
     }
@@ -127,7 +139,7 @@ public class UserRepository {
     public LiveData<Resource<Void>> logout() {
 
         return new NetworkBoundResource<Void, Void, Void>
-                (executors, null, null, null) {
+                (executors, null, null, model -> null) {
 
             @Override
             protected void saveCallResult(@NonNull Void entity) {
@@ -157,7 +169,7 @@ public class UserRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<UserDomain>> createUser(String username, String fullName, String password, String email){
+    public LiveData<Resource<UserDomain>> createUser(String username, String fullName, String password, String email) {
         return new NetworkBoundResource<UserDomain, UserEntity, User>(executors, this::mapUserEntityToDomain, this::mapUserToEntity, this::mapUserToDomain) {
             int userId = 0;
 
@@ -189,7 +201,7 @@ public class UserRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<User>> createCall() {
-                return service.createUser(new UserCredentials(username,password,fullName,email));
+                return service.createUser(new UserCredentials(username, password, fullName, email));
             }
         }.asLiveData();
     }
@@ -221,7 +233,7 @@ public class UserRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<User>> createCall() {
-                return service.updateCurrentUser(new UpdateUserCredentials(fullName,phone,avatarUrl));
+                return service.updateCurrentUser(new UpdateUserCredentials(fullName, phone, avatarUrl));
             }
         }.asLiveData();
     }
@@ -259,4 +271,51 @@ public class UserRepository {
     }
 
 
+    public LiveData<Resource<List<RoutineDomain>>> getCurrentUserRoutines() {
+
+        return new NetworkBoundResource<List<RoutineDomain>, List<RoutineEntity>, PagedList<Routine>>(executors,
+                entities -> {
+                    return entities.stream()
+                            .map(routineEntity -> new RoutineDomain(routineEntity.id, routineEntity.name, routineEntity.detail, routineEntity.dateCreated, routineEntity.averageRating, routineEntity.isPublic, routineEntity.difficulty, routineEntity.creator, routineEntity.category))
+                            .collect(toList());
+                },
+                model -> {
+                    return model.getResults().stream()
+                            .map(routine -> new RoutineEntity(routine.getId(), routine.getName(), routine.getDetail(), routine.getDateCreated(), routine.getAverageRating(), routine.getIsPublic(), routine.getDifficulty(), routine.getCreator(), routine.getCategory()))
+                            .collect(toList());
+                },
+                model -> {
+                    return model.getResults().stream()
+                            .map(routine -> new RoutineDomain(routine.getId(), routine.getName(), routine.getDetail(), routine.getDateCreated(), routine.getAverageRating(), routine.getIsPublic(), routine.getDifficulty(), routine.getCreator(), routine.getCategory()))
+                            .collect(toList());
+                }) {
+            @Override
+            protected void saveCallResult(@NonNull List<RoutineEntity> entities) {
+                database.routineDao().deleteAll();
+                database.routineDao().insert(entities);
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable List<RoutineEntity> entities) {
+                return ((entities == null) || (entities.size() == 0) || rateLimit.shouldFetch(RATE_LIMITER_ALL_KEY));
+            }
+
+            @Override
+            protected boolean shouldPersist(@Nullable PagedList<Routine> model) {
+                return true;
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<List<RoutineEntity>> loadFromDb() {
+                return database.routineDao().findAll();
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<PagedList<Routine>>> createCall() {
+                return service.getCurrentUserRoutines();
+            }
+        }.asLiveData();
+    }
 }

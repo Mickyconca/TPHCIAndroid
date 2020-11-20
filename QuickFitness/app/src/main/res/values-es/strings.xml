@@ -35,7 +35,7 @@
     <string name="_1">1</string>
     <string name="_3">3</string>
     <string name="logout">Cerrar sesión</string>
-    <string name="difficulty">Dificultad</string>
+    <string name="difficulty">Dificultad: </string>
     <string name="insert_password">Ingresar contraseña</string>
     <string name="insert_username">Ingresar nombre usuario</string>
     <string name="invalid_username">Usuario invalido</string>

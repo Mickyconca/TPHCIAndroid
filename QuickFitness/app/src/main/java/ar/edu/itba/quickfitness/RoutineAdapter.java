@@ -31,7 +31,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
         String name = routineList.get(position).getName();
         String creator = routineList.get(position).getCreator().getUsername();
         int rating = routineList.get(position).getAverageRating();
-        int estimated = routineList.get(position).getId();
+        String estimated = routineList.get(position).getDifficulty();
         int id = routineList.get(position).getId();
 
         holder.routineName.setText(name);

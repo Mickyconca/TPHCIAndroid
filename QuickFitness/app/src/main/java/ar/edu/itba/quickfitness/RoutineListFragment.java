@@ -59,12 +59,12 @@ public class RoutineListFragment extends Fragment {
                     public void onClickAddToFav(View v, int position, int routineId) {
                         apiUserService.removeRoutineFromFavourites(routineId).observe(getViewLifecycleOwner(), q -> {
                             if (q.getError() == null) {
-
                                 ImageButton button = v.findViewById(R.id.favButton);
                                 button.setImageResource(R.drawable.icon_fav_black);
                             }
                         });
                     }
+
 
                     @Override
                     public void onClickStartRoutine(View v, int position, int routineId) {

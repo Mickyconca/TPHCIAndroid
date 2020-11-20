@@ -70,27 +70,12 @@
                 android:layout_height="34dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/clock_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|start"
-                    android:contentDescription="@string/time_icon"
-                    android:scaleType="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView6"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_time_black"
-                    app:tint="#000000" />
-
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:layout_marginStart="36dp"
+                    android:layout_marginStart="16dp"
                     android:text="@string/difficulty"
                     android:textColor="#000000"
                     android:textSize="18sp"
