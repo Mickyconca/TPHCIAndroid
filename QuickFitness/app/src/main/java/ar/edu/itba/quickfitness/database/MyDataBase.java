@@ -5,11 +5,14 @@ import androidx.room.TypeConverters;
 
 import ar.edu.itba.quickfitness.api.model.Routine;
 import ar.edu.itba.quickfitness.database.dao.RoutineDao;
+import ar.edu.itba.quickfitness.database.dao.UserDao;
 import ar.edu.itba.quickfitness.database.entity.RoutineEntity;
+import ar.edu.itba.quickfitness.database.entity.UserEntity;
 
-@Database(entities = {RoutineEntity.class }, exportSchema = false, version = 1)
+@Database(entities = {RoutineEntity.class, UserEntity.class}, exportSchema = false, version = 1)
 @TypeConverters({Converters.class})
 public abstract class MyDataBase extends RoomDatabase {
 
     abstract public RoutineDao routineDao();
+    abstract public UserDao userDao();
 }

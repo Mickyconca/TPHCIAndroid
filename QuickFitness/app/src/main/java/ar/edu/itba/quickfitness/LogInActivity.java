@@ -39,7 +39,6 @@ public class LogInActivity extends AppCompatActivity {
         showPassword.setOnClickListener(v->{
             if(aux.get() %2 == 0) {
                 password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-
             }
             else
                 password.setInputType(covered);
@@ -67,25 +66,6 @@ public class LogInActivity extends AppCompatActivity {
                             Toast.makeText(this, r.message, Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
-
-
-
-
-
-//                ApiUserService userService = ApiClient.create(getApplicationContext(), ApiUserService.class);
-//                userService.login(new LoginCredentials(username.getText().toString(), password.getText().toString()))
-//                        .observe(this, r -> {
-//                            if (r.getError() == null) {
-//                                AppPreferences preferences = new AppPreferences(getApplicationContext());
-//                                preferences.setAuthToken(r.getData().getToken());
-//                                Intent intent = new Intent(this, MainActivity.class);
-//                                startActivity(intent);
-//                            } else {
-//                                Toast.makeText(this, r.getError().getDescription(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
             }
         });
     }

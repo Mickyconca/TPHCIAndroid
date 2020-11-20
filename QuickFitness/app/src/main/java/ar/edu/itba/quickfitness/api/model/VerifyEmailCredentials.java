@@ -12,6 +12,11 @@ public class VerifyEmailCredentials {
     @Expose
     private String code;
 
+    public VerifyEmailCredentials(String email, String code) {
+        this.email = email;
+        this.code = code;
+    }
+
     public String getEmail() {
         return email;
     }

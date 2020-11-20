@@ -44,21 +44,6 @@ public class User {
     @Expose
     private Boolean verified;
 
-    public User(Integer id, String username, String fullName, String gender, Date birthdate, String email, String phone, String avatarUrl, Date dateCreated, Date dateLastActive, Boolean deleted, Boolean verified) {
-        this.id = id;
-        this.username = username;
-        this.fullName = fullName;
-        this.gender = gender;
-        this.birthdate = birthdate;
-        this.email = email;
-        this.phone = phone;
-        this.avatarUrl = avatarUrl;
-        this.dateCreated = dateCreated;
-        this.dateLastActive = dateLastActive;
-        this.deleted = deleted;
-        this.verified = verified;
-    }
-
     public Integer getId() {
         return id;
     }

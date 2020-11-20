@@ -52,7 +52,7 @@ public class RoutineRepository {
         return new RoutineDomain(model.getId(), model.getName(), model.getDetail(), model.getDateCreated(), model.getAverageRating(), model.getIsPublic(), model.getDifficulty(), model.getCreator(), model.getCategory());
     }
 
-    private Routine mapSportDomainToModel(RoutineDomain domain) {
+    private Routine mapRoutineDomainToModel(RoutineDomain domain) {
         Routine model = new Routine();
         model.setId(domain.getId());
         model.setName(domain.getName());
@@ -108,7 +108,7 @@ public class RoutineRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<List<RoutineDomain>>> getSports(int page, int size) {
+    public LiveData<Resource<List<RoutineDomain>>> getRoutines(int page, int size) {
 
         return new NetworkBoundResource<List<RoutineDomain>, List<RoutineEntity>, PagedList<Routine>>(executors,
                 entities -> {
@@ -156,7 +156,7 @@ public class RoutineRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<RoutineDomain>> getSport(int sportId) {
+    public LiveData<Resource<RoutineDomain>> getRoutine(int routineId) {
         return new NetworkBoundResource<RoutineDomain, RoutineEntity, Routine>(executors, this::mapRoutineEntityToDomain, this::mapRoutineToEntity, this::mapRoutineToDomain) {
 
             @Override
@@ -177,25 +177,25 @@ public class RoutineRepository {
             @NonNull
             @Override
             protected LiveData<RoutineEntity> loadFromDb() {
-                return database.routineDao().findById(sportId);
+                return database.routineDao().findById(routineId);
             }
 
             @NonNull
             @Override
             protected LiveData<ApiResponse<Routine>> createCall() {
-                return service.getRoutineById(sportId);
+                return service.getRoutineById(routineId);
             }
         }.asLiveData();
     }
 
-    public LiveData<Resource<RoutineDomain>> addSport(RoutineDomain sport) {
+    public LiveData<Resource<RoutineDomain>> addRoutine(RoutineDomain routine) {
 
         return new NetworkBoundResource<RoutineDomain, RoutineEntity, Routine>(executors, this::mapRoutineEntityToDomain, this::mapRoutineToEntity, this::mapRoutineToDomain) {
-            int sportId = 0;
+            int routineId = 0;
 
             @Override
             protected void saveCallResult(@NonNull RoutineEntity entity) {
-                sportId = entity.id;
+                routineId = entity.id;
                 database.routineDao().insert(entity);
             }
 
@@ -212,22 +212,22 @@ public class RoutineRepository {
             @NonNull
             @Override
             protected LiveData<RoutineEntity> loadFromDb() {
-                if (sportId == 0)
+                if (routineId == 0)
                     return AbsentLiveData.create();
                 else
-                    return database.routineDao().findById(sportId);
+                    return database.routineDao().findById(routineId);
             }
 
             @NonNull
             @Override
             protected LiveData<ApiResponse<Routine>> createCall() {
-                Routine model = mapSportDomainToModel(sport);
+                Routine model = mapRoutineDomainToModel(routine);
                 return service.createRoutine(model);
             }
         }.asLiveData();
     }
 
-    public LiveData<Resource<RoutineDomain>> modifySport(RoutineDomain sport) {
+    public LiveData<Resource<RoutineDomain>> modifySport(RoutineDomain routine) {
         return new NetworkBoundResource<RoutineDomain, RoutineEntity, Routine>(executors, this::mapRoutineEntityToDomain, this::mapRoutineToEntity, this::mapRoutineToDomain) {
 
             @Override
@@ -248,19 +248,19 @@ public class RoutineRepository {
             @NonNull
             @Override
             protected LiveData<RoutineEntity> loadFromDb() {
-                return database.routineDao().findById(sport.getId());
+                return database.routineDao().findById(routine.getId());
             }
 
             @NonNull
             @Override
             protected LiveData<ApiResponse<Routine>> createCall() {
-                Routine model = mapSportDomainToModel(sport);
+                Routine model = mapRoutineDomainToModel(routine);
                 return service.updateRoutine(model.getId(), model);
             }
         }.asLiveData();
     }
 
-    public LiveData<Resource<Void>> deleteSport(RoutineDomain sport) {
+    public LiveData<Resource<Void>> deleteRoutine(RoutineDomain routine) {
         return new NetworkBoundResource<Void, RoutineEntity, Void>(executors,
                 entity -> {
                     return null;
@@ -274,7 +274,7 @@ public class RoutineRepository {
 
             @Override
             protected void saveCallResult(@NonNull RoutineEntity entity) {
-                database.routineDao().delete(sport.getId());
+                database.routineDao().delete(routine.getId());
             }
 
             @Override
@@ -290,13 +290,13 @@ public class RoutineRepository {
             @NonNull
             @Override
             protected LiveData<RoutineEntity> loadFromDb() {
-                return database.routineDao().findById(sport.getId());
+                return database.routineDao().findById(routine.getId());
             }
 
             @NonNull
             @Override
             protected LiveData<ApiResponse<Void>> createCall() {
-                return service.deleteRoutine(sport.getId());
+                return service.deleteRoutine(routine.getId());
             }
         }.asLiveData();
     }
