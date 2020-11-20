@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+import ar.edu.itba.quickfitness.database.Converters;
+
 public class UserCredentials {
 
     @SerializedName("username")
@@ -32,15 +34,15 @@ public class UserCredentials {
     @Expose
     private String avatarUrl;
 
-    public UserCredentials(String username, String password, String fullName, String gender, Date birthdate, String email, String phone, String avatarUrl) {
+    public UserCredentials(String username, String password, String fullName, String email) {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
-        this.gender = gender;
-        this.birthdate = birthdate;
+        this.gender = "other";
+        this.birthdate = Converters.fromTimestamp(284007600000L);
         this.email = email;
-        this.phone = phone;
-        this.avatarUrl = avatarUrl;
+        this.phone = "0";
+        this.avatarUrl = "https://flic.kr/p/3ntH2u";
     }
 
     public String getUsername() {

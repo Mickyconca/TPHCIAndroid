@@ -21,6 +21,10 @@ public class CategoryOrSport {
         this.detail = detail;
     }
 
+    public CategoryOrSport(Integer id){
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -9,6 +9,7 @@ import ar.edu.itba.quickfitness.api.ApiUserService;
 import ar.edu.itba.quickfitness.api.model.LoginCredentials;
 import ar.edu.itba.quickfitness.api.model.Token;
 import ar.edu.itba.quickfitness.api.model.User;
+import ar.edu.itba.quickfitness.api.model.UserCredentials;
 import ar.edu.itba.quickfitness.api.model.VerifyEmailCredentials;
 import ar.edu.itba.quickfitness.database.MyDataBase;
 import ar.edu.itba.quickfitness.database.entity.UserEntity;
@@ -155,7 +156,7 @@ public class UserRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<UserDomain>> createUser(UserDomain user){
+    public LiveData<Resource<UserDomain>> createUser(String username, String fullName, String password, String email){
         return new NetworkBoundResource<UserDomain, UserEntity, User>(executors, this::mapUserEntityToDomain, this::mapUserToEntity, this::mapUserToDomain) {
             int userId = 0;
 
@@ -187,8 +188,7 @@ public class UserRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<User>> createCall() {
-                User model = mapUserDomainToModel(user);
-                return service.createUser(model);
+                return service.createUser(new UserCredentials(username,password,fullName,email));
             }
         }.asLiveData();
     }

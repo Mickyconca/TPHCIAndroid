@@ -53,4 +53,6 @@
     <string name="name_input">Nombre*</string>
     <string name="code">Código*</string>
     <string name="verify">Verificar</string>
+    <string name="a_verification_code_was_sent_to">Se envió un código a</string>
+    <string name="example_email_com">example@email.com</string>
 </resources>

@@ -63,12 +63,12 @@ public class ExerciseFragment extends Fragment {
                 timer.cancel();
                 timeLeft = 30 * 1000;
 
-                BreakFragment fragment = new BreakFragment();
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.exerciseFragmentContainer, fragment);
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.addToBackStack(null);
-                transaction.commit();
+//                BreakFragment fragment = new BreakFragment();
+//                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+//                transaction.replace(R.id.exerciseFragmentContainer, fragment);
+//                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
             }
         }.start();
 

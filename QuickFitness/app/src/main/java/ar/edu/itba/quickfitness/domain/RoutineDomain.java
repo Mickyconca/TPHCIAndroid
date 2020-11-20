@@ -1,8 +1,5 @@
 package ar.edu.itba.quickfitness.domain;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import java.util.Date;
 import java.util.Objects;
 

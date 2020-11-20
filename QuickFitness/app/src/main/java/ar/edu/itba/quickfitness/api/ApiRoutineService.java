@@ -6,6 +6,7 @@ import ar.edu.itba.quickfitness.api.model.PagedList;
 import ar.edu.itba.quickfitness.api.model.RatedRoutine;
 import ar.edu.itba.quickfitness.api.model.Rating;
 import ar.edu.itba.quickfitness.api.model.Routine;
+import ar.edu.itba.quickfitness.api.model.RoutineCredentials;
 import ar.edu.itba.quickfitness.api.model.RoutineInfo;
 import ar.edu.itba.quickfitness.api.model.RoutineRating;
 import retrofit2.Call;
@@ -26,7 +27,7 @@ public interface ApiRoutineService {
     LiveData<ApiResponse<PagedList<Routine>>> getAllRoutines(@Query("page") int page, @Query("size") int size);
 
     @POST("routines")
-    LiveData<ApiResponse<Routine>> createRoutine(@Body Routine routine);
+    LiveData<ApiResponse<Routine>> createRoutine(@Body RoutineCredentials routine);
 
     @GET("routines/{routineId}")
     LiveData<ApiResponse<Routine>> getRoutineById(@Path("routineId") int routineId);

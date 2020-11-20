@@ -11,6 +11,7 @@ import androidx.room.Update;
 import java.util.List;
 
 import ar.edu.itba.quickfitness.database.entity.UserEntity;
+
 @Dao
 public abstract class UserDao {
     @Query("SELECT * FROM User")

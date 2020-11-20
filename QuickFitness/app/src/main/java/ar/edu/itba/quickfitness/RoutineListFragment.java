@@ -19,12 +19,16 @@ import java.util.ArrayList;
 
 import ar.edu.itba.quickfitness.api.ApiClient;
 import ar.edu.itba.quickfitness.api.ApiUserService;
+import ar.edu.itba.quickfitness.api.MyApplication;
 import ar.edu.itba.quickfitness.api.model.Routine;
+import ar.edu.itba.quickfitness.repository.RoutineRepository;
 
 public class RoutineListFragment extends Fragment {
 
     private ArrayList<Routine> routines;
     private RecyclerView routineRecycler;
+    private MyApplication application;
+    private RoutineRepository routineRepository;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class RoutineListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_routine_list, container, false);
         routines = new ArrayList<>();
+        application = (MyApplication) getActivity().getApplication();
+        routineRepository = application.getRoutineRepository();
 
         ApiUserService apiUserService = ApiClient.create(getContext(), ApiUserService.class);
 

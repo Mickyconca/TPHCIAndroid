@@ -11,8 +11,10 @@ import java.util.stream.Collectors;
 import ar.edu.itba.quickfitness.R;
 import ar.edu.itba.quickfitness.api.ApiResponse;
 import ar.edu.itba.quickfitness.api.ApiRoutineService;
+import ar.edu.itba.quickfitness.api.model.CategoryOrSport;
 import ar.edu.itba.quickfitness.api.model.PagedList;
 import ar.edu.itba.quickfitness.api.model.Routine;
+import ar.edu.itba.quickfitness.api.model.RoutineCredentials;
 import ar.edu.itba.quickfitness.database.MyDataBase;
 import ar.edu.itba.quickfitness.database.entity.RoutineEntity;
 import ar.edu.itba.quickfitness.domain.RoutineDomain;
@@ -188,7 +190,7 @@ public class RoutineRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<RoutineDomain>> addRoutine(RoutineDomain routine) {
+    public LiveData<Resource<RoutineDomain>> addRoutine(String name, String detail, Boolean isPublic,String difficulty, CategoryOrSport category) {
 
         return new NetworkBoundResource<RoutineDomain, RoutineEntity, Routine>(executors, this::mapRoutineEntityToDomain, this::mapRoutineToEntity, this::mapRoutineToDomain) {
             int routineId = 0;
@@ -221,8 +223,7 @@ public class RoutineRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<Routine>> createCall() {
-                Routine model = mapRoutineDomainToModel(routine);
-                return service.createRoutine(model);
+                return service.createRoutine(new RoutineCredentials(name,detail,isPublic,difficulty,category));
             }
         }.asLiveData();
     }
