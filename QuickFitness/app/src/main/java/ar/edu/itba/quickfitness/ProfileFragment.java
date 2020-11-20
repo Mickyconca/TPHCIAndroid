@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,12 +15,10 @@ import androidx.fragment.app.Fragment;
 
 import org.jetbrains.annotations.NotNull;
 
-import ar.edu.itba.quickfitness.api.ApiClient;
-import ar.edu.itba.quickfitness.api.ApiUserService;
-import ar.edu.itba.quickfitness.api.AppPreferences;
+import java.util.concurrent.atomic.AtomicReference;
+
 import ar.edu.itba.quickfitness.api.MyApplication;
-import ar.edu.itba.quickfitness.api.model.LoginCredentials;
-import ar.edu.itba.quickfitness.databinding.FragmentCreateAccountBinding;
+import ar.edu.itba.quickfitness.domain.UserDomain;
 import ar.edu.itba.quickfitness.repository.UserRepository;
 import ar.edu.itba.quickfitness.vo.Status;
 
@@ -37,7 +37,22 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        myApplication = (MyApplication) getActivity().getApplication();
+        userRepository = myApplication.getUserRepository();
+
+        AtomicReference<UserDomain> currentUser = new AtomicReference<>();
+
+        userRepository.getCurrentUser().observe(getViewLifecycleOwner(), r->{
+            if(r.status == Status.SUCCESS) {
+                currentUser.set(r.data);
+                TextView profileUsername = view.findViewById(R.id.profileUsername);
+                profileUsername.setText(currentUser.get().getFullName());
+            }
+        });
+
+
+        return view;
     }
 
     @Override
@@ -50,8 +65,10 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
         view.findViewById(R.id.logoutButton).setOnClickListener(v -> {
+            Log.d("LOGOUT", "LLEGOOOOOOOOOOOOOOOOOOOOOO");
             userRepository.logout().observe(getViewLifecycleOwner(), r -> {
                 if (r.status == Status.SUCCESS) {
+                    Log.d("LOGOUT", "CHAUUUUUUUUUUU");
                     Intent intent = new Intent(getContext(), LogInActivity.class);
                     startActivity(intent);
                 }

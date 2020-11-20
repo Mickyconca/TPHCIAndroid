@@ -228,7 +228,7 @@ public class RoutineRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<RoutineDomain>> modifySport(RoutineDomain routine) {
+    public LiveData<Resource<RoutineDomain>> modifyRoutine(RoutineDomain routine) {
         return new NetworkBoundResource<RoutineDomain, RoutineEntity, Routine>(executors, this::mapRoutineEntityToDomain, this::mapRoutineToEntity, this::mapRoutineToDomain) {
 
             @Override

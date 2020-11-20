@@ -49,12 +49,12 @@
 
     <ImageView
         android:id="@+id/profilePicture"
-        android:layout_width="122dp"
-        android:layout_height="122dp"
+        android:layout_width="167dp"
+        android:layout_height="157dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="96dp"
         app:layout_constraintEnd_toStartOf="@+id/profileUsername"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
@@ -63,7 +63,7 @@
         android:id="@+id/historyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="156dp"
         android:text="@string/history"
         android:textColor="@color/black"

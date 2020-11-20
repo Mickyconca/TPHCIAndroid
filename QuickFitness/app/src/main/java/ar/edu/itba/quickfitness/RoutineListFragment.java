@@ -16,12 +16,15 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 import ar.edu.itba.quickfitness.api.ApiClient;
 import ar.edu.itba.quickfitness.api.ApiUserService;
 import ar.edu.itba.quickfitness.api.MyApplication;
 import ar.edu.itba.quickfitness.api.model.Routine;
+import ar.edu.itba.quickfitness.domain.RoutineDomain;
 import ar.edu.itba.quickfitness.repository.RoutineRepository;
+import ar.edu.itba.quickfitness.vo.Status;
 
 public class RoutineListFragment extends Fragment {
 
@@ -56,6 +59,7 @@ public class RoutineListFragment extends Fragment {
                     public void onClickAddToFav(View v, int position, int routineId) {
                         apiUserService.removeRoutineFromFavourites(routineId).observe(getViewLifecycleOwner(), q -> {
                             if (q.getError() == null) {
+
                                 ImageButton button = v.findViewById(R.id.favButton);
                                 button.setImageResource(R.drawable.icon_fav_black);
                             }

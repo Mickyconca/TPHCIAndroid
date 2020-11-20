@@ -61,7 +61,7 @@ public class VerifyEmailFragment extends Fragment {
         code = view.findViewById(R.id.putCode);
 
         view.findViewById(R.id.verifyButton).setOnClickListener(v -> {
-            userRepository.verifyEmail(email, code.getText().toString()).observe(getViewLifecycleOwner(), r -> {
+            userRepository.verifyEmail(email.toUpperCase(), code.getText().toString()).observe(getViewLifecycleOwner(), r -> {
 
                 boolean routineFlag, cyclesFlag = true;
 
