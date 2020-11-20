@@ -1,5 +1,6 @@
 package ar.edu.itba.quickfitness;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.EditText;
@@ -59,6 +60,8 @@ public class LogInActivity extends AppCompatActivity {
                             break;
                         case SUCCESS:
                             myApplication.getPreferences().setAuthToken(r.data);
+                            Intent intent = new Intent(this, MainActivity.class);
+                            startActivity(intent);
                             break;
                         case ERROR:
                             Toast.makeText(this, r.message, Toast.LENGTH_SHORT).show();
