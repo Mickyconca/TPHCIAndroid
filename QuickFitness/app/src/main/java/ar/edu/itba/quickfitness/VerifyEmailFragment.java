@@ -90,6 +90,9 @@ public class VerifyEmailFragment extends Fragment {
                         }
                     });
                     if (routineFlag.get() && cyclesFlag.get()) {
+
+                        updatePhoneRoutineId();
+                        updatePhoneCycleId();
                         Intent intent = new Intent(getContext(), MainActivity.class);
                         startActivity(intent);
                     }

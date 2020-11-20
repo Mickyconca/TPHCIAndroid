@@ -28,7 +28,12 @@ public class UserDomain {
         this.birthdate = birthdate;
         this.email = email;
         this.phone = phone;
-        this.avatarUrl = avatarUrl;
+
+        if (avatarUrl == null)
+            this.avatarUrl = "https://flic.kr/p/3ntH2u";
+        else
+            this.avatarUrl = avatarUrl;
+
         this.dateCreated = dateCreated;
         this.dateLastActive = dateLastActive;
         this.deleted = deleted;
@@ -43,7 +48,12 @@ public class UserDomain {
         this.birthdate = birthdate;
         this.email = email;
         this.phone = phone;
-        this.avatarUrl = avatarUrl;
+
+        if (avatarUrl == null)
+            this.avatarUrl = "https://flic.kr/p/3ntH2u";
+        else
+            this.avatarUrl = avatarUrl;
+
         this.dateCreated = dateCreated;
         this.dateLastActive = dateLastActive;
         this.deleted = deleted;

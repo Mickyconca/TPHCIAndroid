@@ -67,13 +67,7 @@ public class ExerciseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ActionBar actionBar = getSupportActionBar();
-//        ColorDrawable colorDrawable
-//                = new ColorDrawable(Color.parseColor("#FF03DAC5"));
-//        actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("Nombre de la Rutina");
-
-        //binding = ActivityExerciseBinding.inflate(getLayoutInflater());
-        //setContentView(binding.getRoot());
 
         findViewById(R.id.backToMain).setOnClickListener(v -> {
             Intent intent = new Intent(this, MainActivity.class);

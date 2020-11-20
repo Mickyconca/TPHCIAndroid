@@ -1,33 +1,34 @@
-package ar.edu.itba.quickfitness.api.model;
+package ar.edu.itba.quickfitness.domain;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+public class ExerciseDomain {
 
-import org.jetbrains.annotations.NotNull;
-
-public class Exercise {
-
-    @SerializedName("id")
-    @Expose
     private Integer id;
-    @SerializedName("name")
-    @Expose
     private String name;
-    @SerializedName("detail")
-    @Expose
     private String detail;
-    @SerializedName("type")
-    @Expose
     private String type;
-    @SerializedName("duration")
-    @Expose
     private Integer duration;
-    @SerializedName("repetitions")
-    @Expose
     private Integer repetitions;
-    @SerializedName("order")
-    @Expose
     private Integer order;
+
+    public ExerciseDomain(Integer id, String name, String detail, String type, Integer duration, Integer repetitions, Integer order) {
+        this.id = id;
+        this.name = name;
+        this.detail = detail;
+        this.type = type;
+        this.duration = duration;
+        this.repetitions = repetitions;
+        this.order = order;
+    }
+
+    public ExerciseDomain(String name, String detail, String type, Integer duration, Integer repetitions, Integer order) {
+        this.id = 0;
+        this.name = name;
+        this.detail = detail;
+        this.type = type;
+        this.duration = duration;
+        this.repetitions = repetitions;
+        this.order = order;
+    }
 
     public Integer getId() {
         return id;
@@ -83,17 +84,5 @@ public class Exercise {
 
     public void setOrder(Integer order) {
         this.order = order;
-    }
-
-    @NotNull
-    @Override
-    public String toString() {
-        return "Exercise{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", detail='" + detail + '\'' +
-                ", type='" + type + '\'' +
-                ", duration=" + duration +
-                '}';
     }
 }
