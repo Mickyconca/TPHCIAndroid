@@ -1,7 +1,9 @@
 package ar.edu.itba.quickfitness;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +18,15 @@ import androidx.fragment.app.Fragment;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
+import ar.edu.itba.quickfitness.api.ApiClient;
+import ar.edu.itba.quickfitness.api.ApiCycleService;
 import ar.edu.itba.quickfitness.api.MyApplication;
+import ar.edu.itba.quickfitness.api.model.ApiCategoryService;
 import ar.edu.itba.quickfitness.api.model.CategoryOrSport;
+import ar.edu.itba.quickfitness.api.model.CategoryOrSportCredentials;
+import ar.edu.itba.quickfitness.domain.CategoryDomain;
 import ar.edu.itba.quickfitness.domain.UserDomain;
+import ar.edu.itba.quickfitness.repository.CategoryRepository;
 import ar.edu.itba.quickfitness.repository.CycleRepository;
 import ar.edu.itba.quickfitness.repository.RoutineRepository;
 import ar.edu.itba.quickfitness.repository.UserRepository;
@@ -33,6 +41,9 @@ public class VerifyEmailFragment extends Fragment {
     private UserRepository userRepository;
     private RoutineRepository routineRepository;
     private CycleRepository cycleRepository;
+    private CategoryRepository categoryRepository;
+    private CategoryDomain category;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -55,31 +66,36 @@ public class VerifyEmailFragment extends Fragment {
         userRepository = application.getUserRepository();
         routineRepository = application.getRoutineRepository();
         cycleRepository = application.getCycleRepository();
+        categoryRepository = application.getCategoryRepository();
 
         TextView emailView = view.findViewById(R.id.emailReplaceView);
         emailView.setText(email);
         code = view.findViewById(R.id.putCode);
 
         view.findViewById(R.id.verifyButton).setOnClickListener(v -> {
-            userRepository.verifyEmail(email.toUpperCase(), code.getText().toString()).observe(getViewLifecycleOwner(), r -> {
+            userRepository.verifyEmail(email, code.getText().toString().toUpperCase()).observe(getViewLifecycleOwner(), r -> {
 
-                boolean routineFlag, cyclesFlag = true;
+                AtomicBoolean routineFlag = new AtomicBoolean(false);
+                AtomicBoolean cyclesFlag = new AtomicBoolean(true);
 
                 if (r.status == Status.SUCCESS) {
-                    routineFlag = createFakeRoutine();
-                    if (routineFlag) {
-                        cyclesFlag = createFakeCycles(routineId);
-                    }
-                    if (routineFlag && cyclesFlag)
-                        userRepository.login(username, password).observe(getViewLifecycleOwner(), q -> {
-                            if (q.status == Status.SUCCESS) {
-                                Intent intent = new Intent(getContext(), MainActivity.class);
-                                startActivity(intent);
+
+                    userRepository.login(username, password).observe(getViewLifecycleOwner(), q -> {
+                        if (q.status == Status.SUCCESS) {
+
+                            routineFlag.set(createFakeRoutine());
+                            if (routineFlag.get()) {
+                                cyclesFlag.set(createFakeCycles(routineId));
                             }
-                        });
-                }
-                else if(r.status == Status.ERROR)
-                    Toast.makeText(getContext(), "Invalid Code",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    if (routineFlag.get() && cyclesFlag.get()) {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+
+                } else if (r.status == Status.ERROR)
+                    Toast.makeText(getContext(), "Invalid Code", Toast.LENGTH_SHORT).show();
             });
         });
         return view;
@@ -87,13 +103,29 @@ public class VerifyEmailFragment extends Fragment {
 
     private boolean createFakeRoutine() {
         AtomicBoolean flag = new AtomicBoolean(false);
-        routineRepository.addRoutine("My Bag", "", false, "rookie", new CategoryOrSport(1))
-                .observe(getViewLifecycleOwner(), q -> {
-                    if (q.status == Status.SUCCESS) {
-                        routineId = q.data.getId();
-                        flag.set(true);
-                    }
-                });
+
+        categoryRepository.getCategory(1).observe(getViewLifecycleOwner(), r -> {
+            if (r.status == Status.SUCCESS)
+                category = r.data;
+            else if(r.status == Status.ERROR){
+                if (r.message.compareTo("Unauthorized") != 0 ) {
+                    categoryRepository.addCategory("Magic Category", "")
+                            .observe(getViewLifecycleOwner(), q -> {
+                                if (q.status == Status.SUCCESS)
+                                    category = q.data;
+                            });
+                }
+            }
+        });
+
+        if (category == null)
+            routineRepository.addRoutine("My Bag", "", false, "rookie", category)
+                    .observe(getViewLifecycleOwner(), q -> {
+                        if (q.status == Status.SUCCESS) {
+                            routineId = q.data.getId();
+                            flag.set(true);
+                        }
+                    });
         return flag.get();
     }
 

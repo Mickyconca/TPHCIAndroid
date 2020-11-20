@@ -9,6 +9,7 @@ import java.util.Date;
 
 import ar.edu.itba.quickfitness.api.model.CategoryOrSport;
 import ar.edu.itba.quickfitness.api.model.Creator;
+import ar.edu.itba.quickfitness.domain.CategoryDomain;
 
 @Entity(tableName = "Routine", indices = {@Index("id")}, primaryKeys = {"id"})
 public class RoutineEntity {
@@ -31,9 +32,9 @@ public class RoutineEntity {
     @ColumnInfo(name = "creator")
     public Creator creator;
     @ColumnInfo(name = "category")
-    public CategoryOrSport category;
+    public CategoryDomain category;
 
-    public RoutineEntity(int id, String name, String detail, Date dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, CategoryOrSport category) {
+    public RoutineEntity(int id, String name, String detail, Date dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, CategoryDomain category) {
         this.id = id;
         this.name = name;
         this.detail = detail;

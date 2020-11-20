@@ -16,9 +16,9 @@ public class RoutineDomain {
     private Boolean isPublic;
     private String difficulty;
     private Creator creator;
-    private CategoryOrSport category;
+    private CategoryDomain category;
 
-    public RoutineDomain(Integer id, String name, String detail, Date dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, CategoryOrSport category) {
+    public RoutineDomain(Integer id, String name, String detail, Date dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, CategoryDomain category) {
         this.id = id;
         this.name = name;
         this.detail = detail;
@@ -30,7 +30,7 @@ public class RoutineDomain {
         this.category = category;
     }
 
-    public RoutineDomain(String name, String detail, Date dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, CategoryOrSport category) {
+    public RoutineDomain(String name, String detail, Date dateCreated, Integer averageRating, Boolean isPublic, String difficulty, Creator creator, CategoryDomain category) {
         this.id = 0;
         this.name = name;
         this.detail = detail;
@@ -106,11 +106,11 @@ public class RoutineDomain {
         this.creator = creator;
     }
 
-    public CategoryOrSport getCategory() {
+    public CategoryDomain getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryOrSport category) {
+    public void setCategory(CategoryDomain category) {
         this.category = category;
     }
 

@@ -12,6 +12,11 @@ public class CategoryOrSportCredentials {
     @Expose
     private String detail;
 
+    public CategoryOrSportCredentials(String name, String detail) {
+        this.name = name;
+        this.detail = detail;
+    }
+
     public String getName() {
         return name;
     }

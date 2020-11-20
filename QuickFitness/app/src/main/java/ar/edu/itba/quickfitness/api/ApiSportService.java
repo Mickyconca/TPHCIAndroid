@@ -1,5 +1,7 @@
 package ar.edu.itba.quickfitness.api;
 
+import androidx.lifecycle.LiveData;
+
 import ar.edu.itba.quickfitness.api.model.CategoryOrSport;
 import ar.edu.itba.quickfitness.api.model.PagedList;
 import retrofit2.Call;
@@ -13,18 +15,18 @@ import retrofit2.http.Path;
 public interface ApiSportService {
 
     @GET("sports")
-    Call<PagedList<CategoryOrSport>> getSports();
+    LiveData<ApiResponse<PagedList<CategoryOrSport>>> getSports();
 
     @POST("sports")
-    Call<CategoryOrSport> addSport(@Body CategoryOrSport sport);
+    LiveData<ApiResponse<CategoryOrSport>>addSport(@Body CategoryOrSport sport);
 
     @GET("sports/{sportId}")
-    Call<CategoryOrSport> getSport(@Path("sportId") int sportId);
+    LiveData<ApiResponse<CategoryOrSport>> getSport(@Path("sportId") int sportId);
 
     @PUT("sports/{sportId}")
-    Call<CategoryOrSport> modifySport(@Path("sportId") int sportId, @Body CategoryOrSport sport);
+    LiveData<ApiResponse<CategoryOrSport>> modifySport(@Path("sportId") int sportId, @Body CategoryOrSport sport);
 
     @DELETE("sports/{sportId}")
-    Call<Void> deleteSport(@Path("sportId") int sportId);
+    LiveData<ApiResponse<Void>> deleteSport(@Path("sportId") int sportId);
 
 }

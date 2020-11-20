@@ -15,15 +15,16 @@ public class CategoryOrSport {
     @Expose
     private String detail;
 
-    public CategoryOrSport(Integer id, String name, String detail) {
-        this.id = id;
-        this.name = name;
-        this.detail = detail;
-    }
+//    public CategoryOrSport(Integer id, String name, String detail) {
+//        this.id = id;
+//        this.name = name;
+//        this.detail = detail;
+//    }
 
-    public CategoryOrSport(Integer id){
-        this.id = id;
-    }
+
+//    public CategoryOrSport(Integer id){
+//        this.id = id;
+//    }
 
     public Integer getId() {
         return id;

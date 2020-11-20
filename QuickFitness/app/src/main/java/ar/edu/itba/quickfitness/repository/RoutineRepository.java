@@ -17,6 +17,7 @@ import ar.edu.itba.quickfitness.api.model.Routine;
 import ar.edu.itba.quickfitness.api.model.RoutineCredentials;
 import ar.edu.itba.quickfitness.database.MyDataBase;
 import ar.edu.itba.quickfitness.database.entity.RoutineEntity;
+import ar.edu.itba.quickfitness.domain.CategoryDomain;
 import ar.edu.itba.quickfitness.domain.RoutineDomain;
 import ar.edu.itba.quickfitness.vo.AbsentLiveData;
 import ar.edu.itba.quickfitness.vo.Resource;
@@ -190,7 +191,7 @@ public class RoutineRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<RoutineDomain>> addRoutine(String name, String detail, Boolean isPublic,String difficulty, CategoryOrSport category) {
+    public LiveData<Resource<RoutineDomain>> addRoutine(String name, String detail, Boolean isPublic,String difficulty, CategoryDomain category) {
 
         return new NetworkBoundResource<RoutineDomain, RoutineEntity, Routine>(executors, this::mapRoutineEntityToDomain, this::mapRoutineToEntity, this::mapRoutineToDomain) {
             int routineId = 0;

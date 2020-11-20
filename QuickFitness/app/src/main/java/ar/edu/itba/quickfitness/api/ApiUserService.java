@@ -10,8 +10,6 @@ import ar.edu.itba.quickfitness.api.model.UpdateUserCredentials;
 import ar.edu.itba.quickfitness.api.model.User;
 import ar.edu.itba.quickfitness.api.model.UserCredentials;
 import ar.edu.itba.quickfitness.api.model.VerifyEmailCredentials;
-import ar.edu.itba.quickfitness.domain.UserDomain;
-import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;

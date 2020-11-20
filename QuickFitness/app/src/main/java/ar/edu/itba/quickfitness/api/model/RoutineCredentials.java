@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+import ar.edu.itba.quickfitness.domain.CategoryDomain;
+
 public class RoutineCredentials {
 
     @SerializedName("name")
@@ -22,9 +24,9 @@ public class RoutineCredentials {
     private String difficulty;
     @SerializedName("category")
     @Expose
-    private CategoryOrSport category;
+    private CategoryDomain category;
 
-    public RoutineCredentials(String name, String detail, Boolean isPublic, String difficulty, CategoryOrSport category) {
+    public RoutineCredentials(String name, String detail, Boolean isPublic, String difficulty, CategoryDomain category) {
         this.name = name;
         this.detail = detail;
         this.isPublic = isPublic;
@@ -64,11 +66,11 @@ public class RoutineCredentials {
         this.difficulty = difficulty;
     }
 
-    public CategoryOrSport getCategory() {
+    public CategoryDomain getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryOrSport category) {
+    public void setCategory(CategoryDomain category) {
         this.category = category;
     }
 }

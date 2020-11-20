@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+import ar.edu.itba.quickfitness.domain.CategoryDomain;
+
 public class Routine {
 
     @SerializedName("id")
@@ -33,7 +35,7 @@ public class Routine {
     private Creator creator;
     @SerializedName("category")
     @Expose
-    private CategoryOrSport category;
+    private CategoryDomain category;
 
     public Integer getId() {
         return id;
@@ -99,11 +101,11 @@ public class Routine {
         this.creator = creator;
     }
 
-    public CategoryOrSport getCategory() {
+    public CategoryDomain getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryOrSport category) {
+    public void setCategory(CategoryDomain category) {
         this.category = category;
     }
 

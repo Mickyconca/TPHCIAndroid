@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 
 import ar.edu.itba.quickfitness.api.model.CategoryOrSport;
 import ar.edu.itba.quickfitness.api.model.Creator;
+import ar.edu.itba.quickfitness.domain.CategoryDomain;
 
 public class Converters {
     @TypeConverter
@@ -23,22 +24,21 @@ public class Converters {
     }
 
     @TypeConverter
-    public static String fromCategoryOrSportToString(CategoryOrSport categoryOrSport){
-        return categoryOrSport == null ? null : categoryOrSport.toConvert();
+    public static String fromCategoryOrSportToString(CategoryDomain category){
+        return category == null ? null : category.toConvert();
     }
 
     @TypeConverter
-    public static CategoryOrSport fromStringToCategoryOrSport(String value){
+    public static CategoryDomain fromStringToCategoryOrSport(String value){
         StringTokenizer tokenizer = new StringTokenizer(value, "|");
         ArrayList<String> strings = new ArrayList<>();
         String aux;
         while (tokenizer.hasMoreTokens()) {
             aux = tokenizer.nextToken();
             strings.add(aux);
-            Log.d("CONVERTER", aux);
         }
 
-        return value == null ? null : new CategoryOrSport(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2));
+        return value == null ? null : new CategoryDomain(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2));
     }
 
     @TypeConverter
