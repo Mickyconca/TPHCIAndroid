@@ -55,7 +55,9 @@
     <string name="verify">Verify</string>
     <string name="a_verification_code_was_sent_to">A code was sent to</string>
     <string name="example_email_com">example@email.com</string>
+    <string name="routine_times">Times</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
