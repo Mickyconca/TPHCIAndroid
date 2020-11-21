@@ -72,6 +72,18 @@ public class RoutineListFragment extends Fragment {
                         intent.putExtra(ExerciseActivity.ROUTINE_ID,routineId);
                         startActivity(intent);
                     }
+
+
+                    @Override
+                    public void onClickShareRoutine(View v, int position, int routineId){
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, "http://www.quickfitness.com/id/1");
+                        sendIntent.setType("text/plain");
+
+                        Intent shareIntent = Intent.createChooser(sendIntent, "null");
+                        startActivity(shareIntent);
+                    }
                 });
                 routineRecycler.setAdapter(adapter);
             } else {

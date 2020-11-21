@@ -79,6 +79,13 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
                 }
             });
 
+            itemView.findViewById(R.id.share).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickListener.onClickShareRoutine(v,getAdapterPosition(), routineId);
+                }
+            });
+
             routineName = itemView.findViewById(R.id.routine_name);
             creatorName = itemView.findViewById(R.id.creatorName);
             rating = itemView.findViewById(R.id.rating);
@@ -95,5 +102,8 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
         void onClickAddToFav(View v, int position, int routineId);
 
         void onClickStartRoutine(View v, int position, int routineId);
+
+        void onClickShareRoutine(View v, int position, int routineId);
+
     }
 }

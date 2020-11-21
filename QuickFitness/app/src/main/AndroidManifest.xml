@@ -19,9 +19,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".ExerciseActivity"
-            android:parentActivityName=".MainActivity"/>
-    </application>
+        <activity android:name=".MainActivity">
+            <intent-filter android:label="view_id_intent">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="http"
+                    android:host="www.quickfitness.com"
+                    android:pathPrefix="/id/" />
+            </intent-filter>
+            </activity>
+            <activity android:name=".ExerciseActivity"
+                android:parentActivityName=".MainActivity"/>
+        </application>
 
-</manifest>
+    </manifest>
