@@ -2,6 +2,11 @@ package ar.edu.itba.quickfitness;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,24 +14,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
 
 import ar.edu.itba.quickfitness.api.ApiClient;
 import ar.edu.itba.quickfitness.api.ApiUserService;
 import ar.edu.itba.quickfitness.api.MyApplication;
 import ar.edu.itba.quickfitness.api.model.Routine;
-import ar.edu.itba.quickfitness.domain.RoutineDomain;
 import ar.edu.itba.quickfitness.repository.RoutineRepository;
-import ar.edu.itba.quickfitness.vo.Status;
 
-public class RoutineListFragment extends Fragment {
+public class FavRoutineListFragment extends Fragment {
+
 
     private ArrayList<Routine> routines;
     private RecyclerView routineRecycler;
@@ -41,30 +38,29 @@ public class RoutineListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_routine_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_fav_routine_list, container, false);
         routines = new ArrayList<>();
         application = (MyApplication) getActivity().getApplication();
         routineRepository = application.getRoutineRepository();
 
         ApiUserService apiUserService = ApiClient.create(getContext(), ApiUserService.class);
 
-        apiUserService.getCurrentUserRoutines().observe(getViewLifecycleOwner(), r -> {
+        apiUserService.getCurrentUserFavourites().observe(getViewLifecycleOwner(), r -> {
             if (r.getError() == null) {
                 routines = new ArrayList<>(r.getData().getResults());
-                routineRecycler = view.findViewById(R.id.recyclerRoutinesId);
+                routineRecycler = view.findViewById(R.id.recyclerFavRoutinesId);
                 routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
                 RoutineAdapter adapter = new RoutineAdapter(routines, new RoutineAdapter.MyAdapterListener() {
                     @Override
                     public void onClickAddToFav(View v, int position, int routineId) {
-                        apiUserService.addRoutineToFavourites(routineId).observe(getViewLifecycleOwner(), q -> {
+                        apiUserService.removeRoutineFromFavourites(routineId).observe(getViewLifecycleOwner(), q -> {
                             if (q.getError() == null) {
                                 ImageButton button = v.findViewById(R.id.favButton);
-                                button.setImageResource(R.drawable.icon_fav_black);
+                                button.setImageResource(R.drawable.icon_fav_black_empty);
                             }
                         });
                     }
-
 
                     @Override
                     public void onClickStartRoutine(View v, int position, int routineId) {

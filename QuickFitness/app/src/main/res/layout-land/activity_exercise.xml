@@ -35,17 +35,17 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pauseButton"
-        android:layout_width="88dp"
-        android:layout_height="71dp"
+        android:layout_width="63dp"
+        android:layout_height="57dp"
         android:contentDescription="@string/pause_exercise"
         android:src="@drawable/icon_pause_black"
         app:backgroundTint="@color/teal"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/forwardExerciseButton"
-        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toEndOf="@+id/backExerciseButton"
         app:layout_constraintTop_toTopOf="@+id/bottomExerciseAppBar"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.631" />
 
     <ImageButton
         android:id="@+id/backExerciseButton"
@@ -65,13 +65,14 @@
         android:id="@+id/routineName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="268dp"
+        android:layout_marginStart="308dp"
         android:text="@string/routine_name"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/exerciseTopToolBar"
         app:layout_constraintStart_toEndOf="@+id/backToMain"
-        app:layout_constraintTop_toTopOf="@+id/exerciseTopToolBar" />
+        app:layout_constraintTop_toTopOf="@+id/exerciseTopToolBar"
+        app:layout_constraintVertical_bias="0.56" />
 
     <TextView
         android:id="@+id/exerciseCounter"
