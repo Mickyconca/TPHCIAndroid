@@ -1,29 +1,23 @@
 package ar.edu.itba.quickfitness;
 
 
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.util.Log;
 import android.widget.TextView;
-import android.text.Html;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
-import ar.edu.itba.quickfitness.api.ApiClient;
-import ar.edu.itba.quickfitness.api.ApiExerciseService;
 import ar.edu.itba.quickfitness.api.MyApplication;
-import ar.edu.itba.quickfitness.api.model.Exercise;
-import ar.edu.itba.quickfitness.api.model.Routine;
-import ar.edu.itba.quickfitness.database.dao.ExerciseDao;
 import ar.edu.itba.quickfitness.domain.ExerciseDomain;
 import ar.edu.itba.quickfitness.repository.ExerciseRepository;
 import ar.edu.itba.quickfitness.repository.RoutineRepository;
@@ -49,6 +43,7 @@ public class ExerciseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
+        getSupportActionBar().hide();
 
         Intent auxIntent = getIntent();
         routineId = auxIntent.getIntExtra(ROUTINE_ID, 0);
@@ -63,7 +58,7 @@ public class ExerciseActivity extends AppCompatActivity {
             if (r.status == Status.SUCCESS) {
                 exerciseList.addAll(r.data);
             } else if (r.status == Status.LOADING)
-                Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Loading 1", Toast.LENGTH_SHORT).show();
             else {
                 Log.d("EXERCISE LIST ERROR", "ERROR");
             }
@@ -72,7 +67,7 @@ public class ExerciseActivity extends AppCompatActivity {
             if (r.status == Status.SUCCESS) {
                 exerciseList.addAll(r.data);
             } else if (r.status == Status.LOADING)
-                Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Loading 2", Toast.LENGTH_SHORT).show();
             else {
                 Log.d("EXERCISE LIST ERROR", "ERROR");
             }
@@ -80,9 +75,9 @@ public class ExerciseActivity extends AppCompatActivity {
         exerciseRepository.getExercises(routineId, routineId * 3 - 2).observe(this, r -> {
             if (r.status == Status.SUCCESS) {
                 exerciseList.addAll(r.data);
-                startRoutine(exerciseList);
+                changeExercise(exerciseList);
             } else if (r.status == Status.LOADING)
-                Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Loading 3", Toast.LENGTH_SHORT).show();
             else {
                 Log.d("EXERCISE LIST ERROR", "ERROR");
             }
@@ -110,24 +105,33 @@ public class ExerciseActivity extends AppCompatActivity {
         });
     }
 
-    private void startRoutine(ArrayList<ExerciseDomain> exerciseList){
+    private void changeExercise(ArrayList<ExerciseDomain> exerciseList){
+        TextView routineName = findViewById(R.id.routine_name);
+//        routineRepository.getRoutine(routineId).observe(this, r -> {
+//            if (r.status == Status.SUCCESS)
+//                routineName.setText(r.data.getName());
+//        });
         Bundle bundle = new Bundle();
         ExerciseFragment exerciseFragment = new ExerciseFragment();
         currentRoutineViewModel = new ExerciseViewModel(exerciseList);
         TextView exerciseCounterView = findViewById(R.id.exerciseCounter);
-        String exerciseCounter = String.valueOf(currentRoutineViewModel.getCurrentPosition()) + "/" + currentRoutineViewModel.getExerciseAmount();
+        String exerciseCounter = String.valueOf(currentRoutineViewModel.getCurrentPosition()+1) + "/" + currentRoutineViewModel.getExerciseAmount();
         exerciseCounterView.setText(exerciseCounter);
         bundle.putInt(CURRENT_POS, currentRoutineViewModel.getCurrentPosition());
         bundle.putString(EXERCISE_NAME, currentRoutineViewModel.getExercise(currentRoutineViewModel.getCurrentPosition()).getName());
         bundle.putString(EXERCISE_DESCRIPTION, currentRoutineViewModel.getExercise(currentRoutineViewModel.getCurrentPosition()).getDetail());
         bundle.putInt(EXERCISE_TIME, currentRoutineViewModel.getExercise(currentRoutineViewModel.getCurrentPosition()).getDuration());
 
+
         exerciseFragment.setArguments(bundle);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.exerciseFragmentContainer, exerciseFragment);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        //transaction.addToBackStack(null);
         transaction.commit();
+
+        currentRoutineViewModel.increseCurrentExercise();
     }
 
     @Override

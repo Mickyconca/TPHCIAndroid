@@ -12,8 +12,6 @@ public class ExerciseViewModel extends ViewModel {
     private int currentPosition = 0;
     private boolean isLastExercise = false;
     private List<ExerciseDomain> exerciseList;
-    private ExerciseRepository repository;
-    private LifecycleOwner lifecycleOwner;
 
 
     public ExerciseViewModel(ArrayList<ExerciseDomain> arrayList) {

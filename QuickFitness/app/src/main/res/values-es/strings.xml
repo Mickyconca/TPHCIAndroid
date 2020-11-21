@@ -4,7 +4,7 @@
     <string name="login_name">Nombre Usuario</string>
     <string name="login_password">Contraseña</string>
     <string name="login">Iniciar Sesión</string>
-    <string name="create_account">Crear Cuenta</string>
+    <string name="create_account">Registrarse</string>
     <string name="start_routine">Iniciar</string>
     <string name="add_to_favourite">Agregar a favoritos</string>
     <string name="routine_name_text">Nombre de Rutina</string>
@@ -22,7 +22,7 @@
     <string name="routine_name">Nombre de la Rutina</string>
     <string name="exerciseCounter">3/15</string>
     <string name="chrono">1:00</string>
-    <string name="description">Description</string>
+    <string name="description">Descripción</string>
     <string name="exit">Salir</string>
     <string name="home">Home</string>
     <string name="search">Buscar</string>
@@ -42,7 +42,7 @@
     <string name="invalid_password">Contraseña invalida</string>
     <string name="login_error">Nombre de usuario o contraseña incorrectos</string>
     <string name="showpassword">Ver Contraseña</string>
-    <string name="exerciseBreak">Descanso!</string>
+    <string name="exerciseBreak">¡Descanso!</string>
     <string name="email">Email*</string>
     <string name="last_name">Apellido*</string>
     <string name="next">Siguiente</string>

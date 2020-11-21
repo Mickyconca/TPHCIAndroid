@@ -7,18 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".ExerciseActivity">
 
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomExerciseAppBar"
         style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         android:layout_width="match_parent"
         android:layout_height="76dp"
         android:layout_gravity="bottom"
+        android:layout_marginTop="240dp"
         app:backgroundTint="@color/purple"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="BottomAppBar" />
+        app:layout_constraintTop_toBottomOf="@+id/exerciseTopToolBar"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="BottomAppBar"
+        tools:layout_editor_absoluteX="0dp" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/exerciseTopToolBar"
@@ -27,67 +29,48 @@
         android:background="@color/teal"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/bottomExerciseAppBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pauseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="88dp"
+        android:layout_height="71dp"
         android:contentDescription="@string/pause_exercise"
         android:src="@drawable/icon_pause_black"
         app:backgroundTint="@color/teal"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomExerciseAppBar"
-        app:layout_constraintEnd_toEndOf="@+id/bottomExerciseAppBar"
-        app:layout_constraintStart_toStartOf="@+id/bottomExerciseAppBar"
-        app:layout_constraintTop_toTopOf="@+id/bottomExerciseAppBar" />
-
-    <ImageButton
-        android:id="@+id/forwardExerciseButton"
-        android:layout_width="80dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="64dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/next_exercise"
-        android:clickable="true"
-        android:src="@drawable/icon_right_arrow_white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/bottomExerciseAppBar"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/pauseButton"
+        app:layout_constraintEnd_toStartOf="@+id/forwardExerciseButton"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toEndOf="@+id/backExerciseButton"
         app:layout_constraintTop_toTopOf="@+id/bottomExerciseAppBar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <ImageButton
         android:id="@+id/backExerciseButton"
         android:layout_width="80dp"
         android:layout_height="76dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="16dp"
         android:background="#00FFFFFF"
-        android:contentDescription="@string/last_exercise"
         android:clickable="true"
+        android:contentDescription="@string/last_exercise"
         android:src="@drawable/icon_left_arrow_white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pauseButton"
-        app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottomExerciseAppBar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/routineName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="268dp"
         android:text="@string/routine_name"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/exerciseTopToolBar"
-        app:layout_constraintEnd_toEndOf="@+id/exerciseTopToolBar"
-        app:layout_constraintStart_toStartOf="@+id/exerciseTopToolBar"
+        app:layout_constraintStart_toEndOf="@+id/backToMain"
         app:layout_constraintTop_toTopOf="@+id/exerciseTopToolBar" />
 
     <TextView
@@ -104,23 +87,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.591" />
 
-    <ImageButton
-        android:id="@+id/backToMain"
-        android:layout_width="68dp"
-        android:layout_height="73dp"
-        android:background="#00FFFFFF"
-        android:backgroundTint="#FFFFFF"
-        android:clickable="true"
-        android:src="@drawable/icon_left_arrow_black"
-        android:tint="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/exerciseTopToolBar"
-        app:layout_constraintEnd_toStartOf="@+id/routineName"
-        app:layout_constraintHorizontal_bias="0.017"
-        app:layout_constraintStart_toStartOf="@+id/exerciseTopToolBar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:contentDescription="@string/exit" />
-
     <FrameLayout
         android:id="@+id/exerciseFragmentContainer"
         android:layout_width="match_parent"
@@ -130,6 +96,36 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exerciseTopToolBar"
-        app:layout_constraintVertical_bias="0.588" />
+        app:layout_constraintVertical_bias="0.588" >
+
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/forwardExerciseButton"
+        android:layout_width="80dp"
+        android:layout_height="76dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00FFFFFF"
+        android:clickable="true"
+        android:contentDescription="@string/next_exercise"
+        android:src="@drawable/icon_right_arrow_white"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomExerciseAppBar"
+        app:layout_constraintEnd_toEndOf="@+id/bottomExerciseAppBar"
+        app:layout_constraintTop_toTopOf="@+id/bottomExerciseAppBar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/backToMain"
+        android:layout_width="68dp"
+        android:layout_height="73dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        android:contentDescription="@string/exit"
+        android:src="@drawable/icon_left_arrow_black"
+        android:tint="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/exerciseTopToolBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

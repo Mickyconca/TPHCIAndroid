@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class BreakFragment extends Fragment {
 
     private CountDownTimer timer;
-    private long timeLeft = 30*1000; //secs
+    private long timeLeft = 10*1000; //secs
     private boolean paused = false;
 
     @Override
@@ -59,14 +59,9 @@ public class BreakFragment extends Fragment {
             @Override
             public void onFinish() {
                 timer.cancel();
-                timeLeft = 30 * 1000;
+                timeLeft = 10 * 1000;
 
-                ProfileFragment fragment = new ProfileFragment();
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.exerciseFragmentContainer, fragment);
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                getParentFragmentManager().popBackStack();
             }
         }.start();
 

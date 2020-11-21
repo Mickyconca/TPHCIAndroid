@@ -3,10 +3,12 @@ package ar.edu.itba.quickfitness;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +22,10 @@ public class ExerciseFragment extends Fragment {
 
     private CountDownTimer timer;
     private long timeLeft; //secs
+    private int fixedTimeLeft;
     private String name;
     private String detail;
+    private int currentPos;
     private boolean paused = false;
 
     @Override
@@ -33,15 +37,20 @@ public class ExerciseFragment extends Fragment {
 
         Bundle bundle = new Bundle();
         bundle = this.getArguments();
-        timeLeft = bundle.getInt(ExerciseActivity.EXERCISE_TIME, 30)*1000;
+        fixedTimeLeft = bundle.getInt(ExerciseActivity.EXERCISE_TIME, 5);
+        timeLeft = fixedTimeLeft * 1000;
         name = bundle.getString(ExerciseActivity.EXERCISE_NAME, null);
         detail = bundle.getString(ExerciseActivity.EXERCISE_DESCRIPTION, null);
+        currentPos = bundle.getInt(ExerciseActivity.CURRENT_POS);
+
         startTimer(view);
 
         TextView exerciseName = view.findViewById(R.id.exerciseName);
         exerciseName.setText(name);
         TextView exerciseDetail = view.findViewById(R.id.exerciseDescription);
         exerciseDetail.setText(detail);
+
+        Log.d("EXERCISE FRAGMENT", "LLEGAY");
 
         return view;
     }
@@ -74,14 +83,14 @@ public class ExerciseFragment extends Fragment {
             @Override
             public void onFinish() {
                 timer.cancel();
-                timeLeft = 30 * 1000;
+                timeLeft = fixedTimeLeft * 1000;
 
-//                BreakFragment fragment = new BreakFragment();
-//                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-//                transaction.replace(R.id.exerciseFragmentContainer, fragment);
-//                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
+                BreakFragment fragment = new BreakFragment();
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.exerciseFragmentContainer, fragment);
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                //transaction.addToBackStack(null);
+                transaction.commit();
             }
         }.start();
 
