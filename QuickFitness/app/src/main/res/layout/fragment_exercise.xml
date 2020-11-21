@@ -15,17 +15,17 @@
         android:layout_marginTop="32dp"
         android:contentDescription="@string/exercise_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/exerciseName"
+        app:layout_constraintStart_toStartOf="@+id/exerciseName"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseName"
         app:layout_constraintVertical_bias="0.004"
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/exerciseName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/exercise"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +46,19 @@
         app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chrono"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.084" />
+
+    <TextView
+        android:id="@+id/exerciseDescription"
+        android:layout_width="77dp"
+        android:layout_height="76dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="0.106" />
 
     <TextView
         android:id="@+id/chrono"

@@ -12,10 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import ar.edu.itba.quickfitness.api.model.Exercise;
+
 public class ExerciseFragment extends Fragment {
 
     private CountDownTimer timer;
-    private long timeLeft = 30*1000; //secs
+    private long timeLeft; //secs
+    private String name;
+    private String detail;
     private boolean paused = false;
 
     @Override
@@ -25,10 +31,17 @@ public class ExerciseFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_exercise, container, false);
         // Inflate the layout for this fragment
 
+        Bundle bundle = new Bundle();
+        bundle = this.getArguments();
+        timeLeft = bundle.getInt(ExerciseActivity.EXERCISE_TIME, 30)*1000;
+        name = bundle.getString(ExerciseActivity.EXERCISE_NAME, null);
+        detail = bundle.getString(ExerciseActivity.EXERCISE_DESCRIPTION, null);
         startTimer(view);
 
-//
-
+        TextView exerciseName = view.findViewById(R.id.exerciseName);
+        exerciseName.setText(name);
+        TextView exerciseDetail = view.findViewById(R.id.exerciseDescription);
+        exerciseDetail.setText(detail);
 
         return view;
     }

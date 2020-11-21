@@ -5,10 +5,12 @@ import android.app.Application;
 import androidx.room.Room;
 
 import ar.edu.itba.quickfitness.api.model.ApiCategoryService;
+import ar.edu.itba.quickfitness.api.model.Exercise;
 import ar.edu.itba.quickfitness.database.MyDataBase;
 import ar.edu.itba.quickfitness.repository.AppExecutors;
 import ar.edu.itba.quickfitness.repository.CategoryRepository;
 import ar.edu.itba.quickfitness.repository.CycleRepository;
+import ar.edu.itba.quickfitness.repository.ExerciseRepository;
 import ar.edu.itba.quickfitness.repository.RoutineRepository;
 import ar.edu.itba.quickfitness.repository.UserRepository;
 
@@ -20,6 +22,7 @@ public class MyApplication extends Application {
     RoutineRepository routineRepository;
     CycleRepository cycleRepository;
     CategoryRepository categoryRepository;
+    ExerciseRepository exerciseRepository;
 
     public AppPreferences getPreferences() {
         return preferences;
@@ -41,6 +44,8 @@ public class MyApplication extends Application {
         return categoryRepository;
     }
 
+    public ExerciseRepository getExerciseRepository(){return exerciseRepository;}
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -53,6 +58,7 @@ public class MyApplication extends Application {
         ApiRoutineService routineService = ApiClient.create(this, ApiRoutineService.class);
         ApiCycleService cycleService = ApiClient.create(this,ApiCycleService.class);
         ApiCategoryService categoryService = ApiClient.create(this,ApiCategoryService.class);
+        ApiExerciseService exerciseService = ApiClient.create(this,ApiExerciseService.class);
 
         MyDataBase database = Room.databaseBuilder(this, MyDataBase.class, Constants.DATABASE_NAME).build();
 
@@ -63,5 +69,7 @@ public class MyApplication extends Application {
         cycleRepository = new CycleRepository(appExecutors, cycleService, database);
 
         categoryRepository = new CategoryRepository(appExecutors, categoryService, database);
+
+        exerciseRepository = new ExerciseRepository(appExecutors,exerciseService,database);
     }
 }
